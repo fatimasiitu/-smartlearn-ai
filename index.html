@@ -8,8 +8,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
+
 <body>
-<!-- update -->
+
   <!-- HEADER -->
 <header class="header">
   <div class="container header-inner">
@@ -134,7 +135,6 @@
         Ask any question and get a clear,<br />
         personalized explanation from AI.
       </p>
-
       <div class="ai-input-row">
         <div class="input-wrapper">
           <span class="input-icon">💬</span>
@@ -400,61 +400,56 @@
     </div>
   </footer>
 <script>
-function askAI() {
+async function askAI() {
   const input = document.getElementById("aiInput");
   const chatBox = document.getElementById("chatBox");
 
   if (!input.value.trim()) return;
 
-  // 1. сообщение пользователя
+  const userText = input.value;
+
+  // user message
   const userMsg = document.createElement("div");
   userMsg.className = "message user";
-  userMsg.innerText = input.value;
+  userMsg.innerText = userText;
   chatBox.appendChild(userMsg);
 
-  // очистка input
-  const userText = input.value;
   input.value = "";
 
-  // 2. "печатает..."
+  // typing
   const typing = document.createElement("div");
   typing.className = "message ai";
   typing.innerText = "Typing...";
   chatBox.appendChild(typing);
 
-  // 3. ответ AI
-  setTimeout(() => {
+  try {
+    const res = await fetch("http://localhost:3000/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        message: userText,
+      }),
+    });
+
+    const data = await res.json();
+
     typing.remove();
 
     const aiMsg = document.createElement("div");
     aiMsg.className = "message ai";
-    aiMsg.innerText = generateAIResponse(userText);
+    aiMsg.innerText = data.reply;
 
     chatBox.appendChild(aiMsg);
 
     chatBox.scrollTop = chatBox.scrollHeight;
-  }, 1000);
 
-  chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-function generateAIResponse(text) {
-  text = text.toLowerCase();
-
-  if (text.includes("hello")) {
-    return "Hi! How can I help you with AI learning?";
+  } catch (error) {
+    typing.innerText = "Error connecting to AI";
   }
-
-  if (text.includes("neural")) {
-    return "Neural networks are systems inspired by the human brain that learn patterns from data.";
-  }
-
-  if (text.includes("ai")) {
-    return "AI stands for Artificial Intelligence — systems that can learn and make decisions.";
-  }
-
-  return "That's a great question! AI would normally generate a personalized answer here.";
 }
 </script>
+
 </body>
 </html>
