@@ -324,16 +324,22 @@ body {
   margin-top: 18px;
 }
 
-/* EXPLANATION */
-/* EXPLANATION BLOCK */
-.explanation {
-  display: grid;
-  grid-template-columns: 1fr 240px;
-  gap: 40px;
-  align-items: center;
+/* CARD как в макете */
+.explanation-card {
+  margin-top: 20px;
+  padding: 24px;
+
+  background: #ffffff;
+  border-radius: 20px;
+
+  border: 1px solid #eef2ff;
+
+  box-shadow:
+    0 10px 30px rgba(79,110,247,0.05),
+    0 2px 6px rgba(0,0,0,0.02);
 }
 
-/* HEADER (title + buttons) */
+/* HEADER */
 .ex-header {
   display: flex;
   justify-content: space-between;
@@ -347,29 +353,111 @@ body {
   font-weight: 600;
 }
 
-/* BUTTONS */
-.ex-buttons {
-  display: flex;
-  gap: 10px;
+/* BODY */
+.ex-body {
+  display: grid;
+  grid-template-columns: 1fr 260px; /* текст + картинка */
+  gap: 40px;
+  align-items: center;
 }
 
+/* ЛЕВАЯ КОЛОНКА */
+
+.ex-left {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ТЕКСТ */
+
+.ex-text p {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+/* КНОПКИ */
+
+.ex-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+/* КАРТИНКА */
+
+.ex-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -70px;
+}
+
+.ex-image img {
+  width: 300px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* TEXT */
+.ex-text p {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+/* контейнер */
+.ex-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+/* outline кнопка */
 .btn-outline {
-  border: 1px solid #c7d2fe;
-  background: #f5f7ff;
+  background: transparent;
+  border: 1.5px solid #4f6ef7;
   color: #4f6ef7;
 
-  padding: 8px 14px;
-  border-radius: 10px;
-  font-size: 13px;
-  cursor: pointer;
+  padding: 10px 18px;
+  border-radius: 14px;
 
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
   transition: 0.2s;
 }
 
+/* hover */
 .btn-outline:hover {
   background: #eef2ff;
 }
 
+/* primary кнопка */
+.btn-primary {
+  background: linear-gradient(135deg, #4f6ef7, #6a7efc);
+  color: #ffffff;
+
+  border: none;
+  padding: 10px 18px;
+  border-radius: 14px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  box-shadow: 0 6px 16px rgba(79,110,247,0.25);
+  transition: 0.2s;
+}
+
+/* hover */
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(79,110,247,0.35);
+}
 /* TEXT */
 .ex-left p {
   font-size: 14px;
@@ -399,11 +487,14 @@ body {
 }
 
 .btn-light {
-  border: 1px solid #c7d2fe;
+  border: 1.5px solid #4f6ef7;
   padding: 8px 14px;
   border-radius: 10px;
-  background: #f5f7ff;
+  background: transparent;
   color: #4f6ef7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-disabled {
@@ -414,18 +505,6 @@ body {
   border-radius: 10px;
 }
 
-/* QUIZ */
-.option {
-  border: 1px solid #e5e7eb;
-  padding: 12px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.option.active {
-  border: 2px solid #4f6ef7;
-  background: #eef2ff;
-}
 
 /* AI */
 .ai-input {
@@ -469,3 +548,445 @@ body {
   justify-content: space-between;
   margin-top: 20px;
 }
+
+/* EXAMPLE BLOCK — как в макете */
+.example-card {
+  margin-top: 20px;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #eef2ff;
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 40px;
+  align-items: center;
+  box-shadow:
+    0 10px 30px rgba(79,110,247,0.05),
+    0 2px 6px rgba(0,0,0,0.02);
+}
+
+/* TEXT */
+.example-text h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #4f6ef7;
+  margin-bottom: 10px;
+}
+
+.example-text p {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+/* IMAGE */
+.example-image {
+  display: flex;
+  justify-content: center;
+}
+
+.example-image img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+/* === QUIZ BLOCK (как в макете) === */
+
+.quiz-card {
+  margin-top: 20px;
+  padding: 24px;
+
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #eef2ff;
+
+  box-shadow:
+    0 10px 30px rgba(79,110,247,0.05),
+    0 2px 6px rgba(0,0,0,0.02);
+}
+
+/* заголовок */
+.quiz-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #111827;
+}
+
+/* варианты */
+.option {
+  border: 1px solid #e5e7eb;
+  padding: 14px 16px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+
+  font-size: 14px;
+  color:  #6b7280;
+
+  background: #ffffff;
+  transition: all 0.2s ease;
+}
+
+/* hover */
+.option:hover {
+  border-color: #4f6ef7;
+  background: #f5f7ff;
+  color: #374151;
+}
+
+/* выбранный */
+.option.active {
+  border: 2px solid #4f6ef7;
+  background: #eef2ff;
+  color: #111827;
+  font-weight: 500;
+}
+
+/* кнопка */
+.quiz-card .btn-disabled {
+  margin-top: 16px;
+  width: 100%;
+
+  background: #e5e7eb;
+  color: #9ca3af;
+
+  border-radius: 14px;
+  padding: 14px;
+
+  font-size: 14px;
+}
+
+.quiz-card .btn-primary {
+  width: 100%;
+}
+
+/* правильный ответ */
+.option.correct {
+  border: 2px solid #22c55e;
+  background: #ecfdf5;
+  color: #065f46;
+}
+
+/* неправильный */
+.option.wrong {
+  border: 2px solid #ef4444;
+  background: #fef2f2;
+  color: #7f1d1d;
+}
+/* одинаковый стиль заголовков */
+.quiz-card h3 {
+  color: #4f6ef7;
+}
+/* все заголовки урока */
+.ex-header h3,
+.example-text h3,
+.quiz-card h3 {
+  color: #4f6ef7;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* AI BLOCK */
+.ai-card h3 {
+  color: #4f6ef7;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.ai-sub {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 14px;
+}
+
+/* INPUT */
+.ai-input {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.ai-input input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+/* ANSWER BOX */
+.ai-answer-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  background: #f5f7ff;
+  padding: 14px;
+  border-radius: 14px;
+}
+
+/* AVATAR */
+.ai-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #eef2ff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+}
+
+/* TEXT */
+.ai-content strong {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.ai-content p {
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+/* ACTIONS */
+.ai-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* CHAT BOX */
+.chat-box {
+  max-height: 250px;
+  overflow-y: auto;
+  margin-bottom: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* MESSAGE */
+.message {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+/* USER справа */
+.message.user {
+  justify-content: flex-end;
+}
+
+.message.user .bubble {
+  background: linear-gradient(135deg, #4f6ef7, #6a7efc);
+  color: white;
+}
+
+/* AI слева */
+.message.ai .bubble {
+  background: #f5f7ff;
+  color: #374151;
+}
+
+/* AVATAR */
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #eef2ff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* TEXT */
+.bubble {
+  padding: 10px 14px;
+  border-radius: 14px;
+  max-width: 70%;
+  font-size: 13px;
+}
+
+/* INPUT */
+.chat-input {
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.ai-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+
+  background: linear-gradient(135deg, #4f6ef7, #6a7efc);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 4px 12px rgba(79,110,247,0.3);
+}
+
+.lesson-nav button {
+  height: 44px;
+  padding: 0 22px;
+  border-radius: 14px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* COURSE LIST */
+
+.course-list {
+  margin-top: 12px;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* ITEM */
+
+.course-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 16px;
+  border-bottom: 1px solid #eef2ff;
+
+  font-size: 14px;
+  color: #374151;
+
+  background: #ffffff;
+}
+
+/* LAST */
+.course-item:last-child {
+  border-bottom: none;
+}
+
+/* DONE */
+.course-item.done {
+  color: #111827;
+}
+.course-list {
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+
+/* DONE */
+.course-item.done {
+  color: #111827;
+}
+
+.course-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 16px;
+  border-bottom: 1px solid #eef2ff;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* active */
+.course-item.active {
+  background: #eef2ff;
+  color: #4f6ef7;
+  font-weight: 500;
+}
+
+/* locked */
+.course-item.locked {
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* hover */
+.course-item:not(.locked):hover {
+  background: #f5f7ff;
+}
+
+.icon {
+  width: 22px;
+  height: 22px;
+}
+
+/* CHECK */
+.icon.check {
+  background: url('data:image/svg+xml;utf8,<svg fill="%2322c55e" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12"/><path d="M7 12l3 3 7-7" stroke="white" stroke-width="2" fill="none"/></svg>') no-repeat center/contain;
+}
+
+/* PLAY */
+.icon.play {
+  background: url('data:image/svg+xml;utf8,<svg fill="%234f6ef7" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12"/><path d="M10 8l6 4-6 4z" fill="white"/></svg>') no-repeat center/contain;
+}
+
+/* LOCK */
+.icon.lock {
+  background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" fill="%239ca3af"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3" fill="none" stroke="%239ca3af" stroke-width="2"/></svg>') no-repeat center/contain;
+}
+
+.icon.check::after {
+  content: "";
+  width: 6px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.icon.play::after {
+  content: "";
+  border-left: 6px solid white;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+}
+
+
+.icon.lock::before {
+  content: "";
+  width: 12px;
+  height: 8px;
+  border: 2px solid #9ca3af;
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+  position: absolute;
+  top: 2px;
+}
+
+.icon.lock::after {
+  content: "";
+  width: 12px;
+  height: 10px;
+  background: #9ca3af;
+  border-radius: 2px;
+  position: absolute;
+  bottom: 2px;
+}
+

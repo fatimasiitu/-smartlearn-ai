@@ -185,82 +185,126 @@
   </div>
 
   <!-- EXPLANATION -->
-  <div class="explanation">
+  <div class="explanation-card">
+
+  <!-- HEADER -->
+  <div class="ex-header">
+    <h3>1. Explanation</h3>
+
+    
+  </div>
+
+  <!-- CONTENT -->
+  <div class="ex-body">
 
   <!-- LEFT -->
   <div class="ex-left">
 
-    <!-- HEADER -->
-    <div class="ex-header">
-      <h3>1. Explanation</h3>
+    <div class="ex-text">
+      <p>
+        Artificial Intelligence (AI) is a field of computer science that focuses on creating systems that can perform tasks that normally require human intelligence.
+      </p>
 
-      <div class="ex-buttons">
-        <button class="btn-outline">✨ Explain simpler</button>
-        <button class="btn-outline">📊 More detailed</button>
-      </div>
+      <p>
+        AI systems can recognize patterns, understand language, make decisions, and learn from data.
+      </p>
+
+      <p>
+        AI learns from data. The more data it processes, the better it becomes at making predictions and decisions.
+      </p>
+
+      <p>
+        AI is widely used in real life, including recommendation systems, virtual assistants, healthcare, and finance.
+      </p>
     </div>
 
-    <!-- TEXT -->
-    <p>
-      Artificial Intelligence (AI) is a field of computer science that focuses on creating systems that can perform tasks that normally require human intelligence.
-    </p>
-
-    <p>
-      AI systems can recognize patterns, understand language, make decisions, and learn from data.
-    </p>
-
-    <p>
-      AI learns from data. The more data it processes, the better it becomes at making predictions and decisions.
-    </p>
-
-    <p>
-      AI is widely used in real life, including recommendation systems, virtual assistants, healthcare, and finance.
-    </p>
+    <!-- КНОПКИ ВНИЗУ -->
+    <div class="ex-buttons">
+      <button class="btn-outline">Explain simpler</button>
+      <button class="btn-primary">More detailed</button>
+    </div>
 
   </div>
 
   <!-- RIGHT -->
-  <div class="ex-right">
+  <div class="ex-image">
     <img src="assets/ai.png" alt="AI illustration">
   </div>
+
+</div>
 
 </div>
   </div>
 
 
         <!-- EXAMPLE -->
-        <div class="card">
-          <h3>2. Example</h3>
-          <p>
-            When you watch Netflix or YouTube, AI recommends videos based on what you watched before.
-          </p>
+                <div class="example-card">
+
+          <!-- LEFT -->
+          <div class="example-text">
+            <h3>2. Example</h3>
+
+            <p>
+              When you watch Netflix or YouTube, AI recommends videos based on what you watched before.
+            </p>
+          </div>
+
+          <!-- RIGHT -->
+          <div class="example-image">
+            <img src="assets/netflix.png" alt="Example">
+          </div>
+
         </div>
 
         <!-- QUIZ -->
-        <div class="card">
-          <h3>3. Quick Check</h3>
+        <div class="quiz-card">
 
-          <div class="option">A) Stores files</div>
-          <div class="option active">B) Learns from data</div>
-          <div class="option">C) Only shows videos</div>
-          <div class="option">D) Works only on the internet</div>
+  <h3>3. Quick Check</h3>
 
-          <button class="btn-disabled">Submit answer</button>
-        </div>
+  <div class="option" data-option="A">A) Stores files</div>
+  <div class="option" data-option="B" data-correct="true">B) Learns from data</div>
+  <div class="option" data-option="C">C) Only shows videos</div>
+  <div class="option" data-option="D">D) Works only on the internet</div>
+
+  <button class="btn-disabled" id="submitBtn" disabled>
+    Submit answer
+  </button>
+
+</div>
 
         <!-- AI -->
-        <div class="card">
-          <h3>4. Ask AI Tutor</h3>
+        <div class="card ai-card">
 
-          <div class="ai-input">
-            <input placeholder="Type your question here..." />
-            <button class="btn-primary">Ask</button>
-          </div>
+  <h3>4. Ask AI Tutor</h3>
+  <p class="ai-sub">Have a question about this lesson? Ask your AI tutor.</p>
 
-          <div class="ai-answer">
-            AI is about making machines smart. They can learn from data.
-          </div>
-        </div>
+  <!-- CHAT -->
+  <div class="chat-box" id="chatBox">
+
+    <!-- сообщение AI -->
+    <div class="message ai">
+      <div class="avatar ai-avatar">
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+    <circle cx="12" cy="12" r="5" stroke="white" stroke-width="1.6"/>
+    <path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1
+             M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"
+      stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+  </svg>
+</div>
+      <div class="bubble">
+        Hi! Ask me anything about this lesson.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- INPUT -->
+  <div class="chat-input">
+    <input id="chatInput" placeholder="Type your question here..." />
+    <button id="sendBtn" class="btn-primary">Ask</button>
+  </div>
+
+</div>
 
         <!-- NAV -->
         <div class="lesson-nav">
@@ -310,14 +354,59 @@
 <a href="#" class="progress-link">View full progress →</a>
         </div>
 
-        <div class="card small">
-          <h4>Course content</h4>
-          <ul>
-            <li class="active">1. Introduction to AI</li>
-            <li>2. Types of AI</li>
-            <li>3. How AI learns</li>
-          </ul>
-        </div>
+        <div class="course-list" id="courseList">
+
+  <div class="course-item active" data-index="1">
+    <span>1. Introduction to Artificial Intelligence</span>
+    <div class="icon play"></div>
+  </div>
+
+  <div class="course-item locked" data-index="2">
+    <span>2. Types of AI</span>
+    <div class="icon lock"></div>
+  </div>
+
+  <div class="course-item locked" data-index="3">
+    <span>3. How AI learns</span>
+    <div class="icon lock"></div>
+  </div>
+
+  <div class="course-item locked" data-index="4">
+    <span>4. Structure of a good prompt</span>
+    <div class="icon lock"></div>
+  </div>
+
+  <div class="course-item locked" data-index="5">
+    <span>5. Common mistakes in prompting</span>
+    <div class="icon lock"></div>
+  </div>
+
+  <div class="course-item locked" data-index="6">
+    <span>6. Why AI makes mistakes</span>
+    <div class="icon lock"></div>
+  </div>
+
+  <div class="course-item locked" data-index="7">
+    <span>7. AI in everyday life</span>
+    <div class="icon lock"></div>
+  </div>
+
+  <div class="course-item locked" data-index="8">
+    <span>8. The future of AI</span>
+    <div class="icon lock"></div>
+  </div>
+
+  <div class="course-item locked" data-index="9">
+    <span>9. Final test AI basics</span>
+    <div class="icon lock"></div>
+  </div>
+
+  <div class="course-item locked" data-index="10">
+    <span>10. Course Summary</span>
+    <div class="icon lock"></div>
+  </div>
+
+</div>
 
         <div class="card small">
           <h4>Need help?</h4>
@@ -340,6 +429,154 @@ const circumference = 2 * Math.PI * radius;
 
 circle.style.strokeDasharray = circumference;
 circle.style.strokeDashoffset = circumference - (progress / 100) * circumference;
+</script>
+<script>
+const options = document.querySelectorAll(".option");
+const submitBtn = document.getElementById("submitBtn");
+
+let selected = null;
+
+// выбор варианта
+options.forEach(option => {
+  option.addEventListener("click", () => {
+
+    // убрать старый выбор
+    options.forEach(o => o.classList.remove("active"));
+
+    // новый выбор
+    option.classList.add("active");
+    selected = option;
+
+    // активировать кнопку
+    submitBtn.disabled = false;
+    submitBtn.classList.remove("btn-disabled");
+    submitBtn.classList.add("btn-primary");
+  });
+});
+
+// проверка ответа
+submitBtn.addEventListener("click", () => {
+  if (!selected) return;
+
+  const isCorrect = selected.dataset.correct === "true";
+
+  // очистить стили
+  options.forEach(o => {
+    o.classList.remove("correct", "wrong");
+  });
+
+  if (isCorrect) {
+    selected.classList.add("correct");
+  } else {
+    selected.classList.add("wrong");
+
+    // подсветить правильный
+    options.forEach(o => {
+      if (o.dataset.correct === "true") {
+        o.classList.add("correct");
+      }
+    });
+  }
+
+  // заблокировать повторный выбор
+  options.forEach(o => o.style.pointerEvents = "none");
+});
+</script>
+<script>
+const chatBox = document.getElementById("chatBox");
+const input = document.getElementById("chatInput");
+const btn = document.getElementById("sendBtn");
+
+function addMessage(text, type) {
+  const msg = document.createElement("div");
+  msg.classList.add("message", type);
+
+  msg.innerHTML = `
+    ${type === "ai" ? `
+      <div class="avatar ai-avatar">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+          <circle cx="12" cy="12" r="5" stroke="white" stroke-width="1.6"/>
+          <path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1
+                   M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"
+            stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </div>
+    ` : ""}
+    
+    <div class="bubble">${text}</div>
+  `;
+
+  chatBox.appendChild(msg);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+// fake AI ответы
+function getAIResponse(userText) {
+  if (userText.toLowerCase().includes("ai")) {
+    return "AI is about machines learning from data.";
+  }
+  if (userText.toLowerCase().includes("example")) {
+    return "For example, Netflix recommends videos based on your history.";
+  }
+  return "Good question! AI learns patterns and improves over time.";
+}
+
+btn.addEventListener("click", sendMessage);
+input.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") sendMessage();
+});
+
+function sendMessage() {
+  const text = input.value.trim();
+  if (!text) return;
+
+  addMessage(text, "user");
+  input.value = "";
+
+  // typing эффект
+  const typing = document.createElement("div");
+  typing.classList.add("message", "ai");
+  typing.innerHTML = `
+  <div class="avatar ai-avatar">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+      <circle cx="12" cy="12" r="5" stroke="white" stroke-width="1.6"/>
+      <path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1
+               M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"
+        stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div class="bubble">...</div>
+`;
+  chatBox.appendChild(typing);
+  chatBox.scrollTop = chatBox.scrollHeight;
+
+  setTimeout(() => {
+    typing.remove();
+    addMessage(getAIResponse(text), "ai");
+  }, 800);
+}
+
+const items = document.querySelectorAll(".course-item");
+
+items.forEach((item, index) => {
+  item.addEventListener("click", () => {
+
+    if (item.classList.contains("locked")) return;
+
+    // текущий становится выполненным
+    item.classList.remove("active");
+    item.classList.add("done");
+    item.querySelector(".icon").className = "icon check";
+
+    // следующий открывается
+    const next = items[index + 1];
+    if (next) {
+      next.classList.remove("locked");
+      next.classList.add("active");
+      next.querySelector(".icon").className = "icon play";
+    }
+  });
+});
 </script>
 </body>
 </html>
