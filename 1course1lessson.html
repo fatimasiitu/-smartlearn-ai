@@ -510,16 +510,8 @@ function addMessage(text, type) {
   chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-// fake AI ответы
-function getAIResponse(userText) {
-  if (userText.toLowerCase().includes("ai")) {
-    return "AI is about machines learning from data.";
-  }
-  if (userText.toLowerCase().includes("example")) {
-    return "For example, Netflix recommends videos based on your history.";
-  }
-  return "Good question! AI learns patterns and improves over time.";
-}
+
+
 
 btn.addEventListener("click", sendMessage);
 input.addEventListener("keypress", (e) => {
@@ -550,10 +542,44 @@ function sendMessage() {
   chatBox.appendChild(typing);
   chatBox.scrollTop = chatBox.scrollHeight;
 
-  setTimeout(() => {
+async function sendMessage() {
+  const text = input.value.trim();
+  if (!text) return;
+
+  addMessage(text, "user");
+  input.value = "";
+
+  // typing эффект
+  const typing = document.createElement("div");
+  typing.classList.add("message", "ai");
+  typing.innerHTML = `
+  <div class="avatar ai-avatar">
+    ...
+  </div>
+  <div class="bubble">Typing...</div>
+  `;
+  chatBox.appendChild(typing);
+
+  try {
+    const res = await fetch("http://localhost:3000/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: text,
+        mode: "lesson"
+      })
+    });
+
+    const data = await res.json();
+
     typing.remove();
-    addMessage(getAIResponse(text), "ai");
-  }, 800);
+    addMessage(data.reply, "ai");
+
+  } catch (err) {
+    typing.innerHTML = `<div class="bubble">AI error 😢</div>`;
+  }
 }
 
 const items = document.querySelectorAll(".course-item");
