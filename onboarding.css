@@ -1,0 +1,150 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(180deg, #f3f7ff, #ffffff);
+  color: #111827;
+}
+
+a{
+  text-decoration: none;
+}
+
+/* PAGE */
+.onboarding-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px;
+}
+
+/* CARD */
+.onboarding-card {
+  width: 100%;
+  max-width: 1200px;
+  min-height: 720px;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.95),
+    rgba(245,248,255,0.95)
+  );
+  border-radius: 28px;
+  box-shadow: 0 30px 80px rgba(79,110,247,0.15);
+  padding: 40px 48px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+.onboarding-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+
+.brand img {
+  width: 32px;
+  height: 32px;
+}
+
+/* PROGRESS */
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.step-text {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.progress-bar {
+  width: 160px;
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4f6ef7, #6a7efc);
+  border-radius: 6px;
+}
+
+/* CONTENT */
+.onboarding-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+.onboarding-content h1 {
+  font-size: 35px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.description {
+  font-size: 18px;
+  color: #6b7280;
+  margin-bottom: 40px;
+  line-height: 1.5;
+}
+
+/* ILLUSTRATION */
+.illustration {
+  margin-bottom: 48px;
+}
+
+.illustration img {
+  max-width: 360px;
+  width: 100%;
+}
+
+/* BUTTON */
+.btn-primary {
+  height: 56px;
+  min-width: 220px;
+  border-radius: 16px;
+  border: none;
+  background: linear-gradient(90deg, #4f6ef7, #6a7efc);
+  color: white;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(79,110,247,0.35);
+}
+
+.btn-primary:hover {
+  opacity: 0.95;
+}
+
+/* SKIP */
+.skip {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #6b7280;
+  text-decoration: none;
+}
+
+.skip:hover {
+  text-decoration: underline;
+}

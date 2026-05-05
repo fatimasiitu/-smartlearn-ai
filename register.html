@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Create account — SmartLearn AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="auth.css" />
+</head>
+<body>
+
+  <div class="auth-page">
+
+    <div class="auth-card">
+
+      <!-- LEFT SIDE -->
+      <div class="auth-left">
+        <div class="brand">
+          <img src="assets/logo.png" alt="SmartLearn AI" />
+          <span>SmartLearn AI</span>
+        </div>
+
+        <h1>Personalized learning powered by AI</h1>
+        <p>
+          Learn at your own pace with clarity and confidence.
+          Our AI tutor adapts content to your level and goals.
+        </p>
+      </div>
+
+      <!-- DIVIDER -->
+      <div class="auth-divider"></div>
+
+      <!-- RIGHT SIDE -->
+      <div class="auth-right">
+        <h2>Create your SmartLearn account</h2>
+        <p class="subtitle">Start your personalized learning journey</p>
+
+        <form class="auth-form" onsubmit="handleRegister(event)">
+
+          <label>
+            Full name
+            <input type="text" placeholder="Your name" required/>
+          </label>
+
+          <label>
+            Email address
+            <input type="email" placeholder="name@email.com" required/>
+          </label>
+
+          <label class="password-field">
+            Password
+            <input type="password" placeholder="Enter password" />
+            <button type="button" class="toggle-password">
+              <!-- eye icon -->
+              <svg viewBox="0 0 24 24">
+                <path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6-10-6-10-6z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </label>
+
+          <label class="password-field">
+            Repeat password
+            <input type="password" placeholder="Repeat password" />
+            <button type="button" class="toggle-password">
+              <svg viewBox="0 0 24 24">
+                <path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6-10-6-10-6z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </label>
+
+          <button type="submit" class="btn-primary">
+            Create account
+          </button>
+
+          <p class="switch">
+            Already have an account?
+            <a href="login.html">Log in</a>
+          </p>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+<script>
+function handleRegister(e) {
+  e.preventDefault();
+
+  const inputs = document.querySelectorAll("input");
+  const values = Array.from(inputs).map(i => i.value.trim());
+
+  // проверка пустых полей
+  if (values.some(v => !v)) {
+    alert("Fill all fields");
+    return;
+  }
+
+  // проверка паролей
+  if (values[2] !== values[3]) {
+    alert("Passwords do not match");
+    return;
+  }
+
+  // сохранение пользователя
+  localStorage.setItem("user", JSON.stringify({
+    name: values[0],
+    email: values[1],
+    password: values[2]
+  }));
+
+  console.log("Register successful");
+
+  // уведомление
+  alert("Account created successfully 🎉");
+
+  // переход (один, без конфликтов)
+  setTimeout(() => {
+    window.location.href = "onstep1.html";
+  }, 500);
+}
+
+
+/* toggle password */
+document.querySelectorAll(".toggle-password").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const input = btn.parentElement.querySelector("input");
+
+    input.type = input.type === "password" ? "text" : "password";
+  });
+});
+</script>
+</body>
+</html>

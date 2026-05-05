@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login — SmartLearn AI</title>
+  <link rel="stylesheet" href="login.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="auth-page">
+  <div class="auth-card">
+
+    <!-- LEFT -->
+    <div class="auth-left">
+      <div class="logo">
+        <img src="assets/logo.png" alt="SmartLearn AI" class="logo-img">
+        <span>SmartLearn AI</span>
+      </div>
+
+      <h1>Personalized learning powered by AI</h1>
+      <p>
+        Learn at your own pace with clarity and confidence.
+        Our AI tutor adapts content to your level and goals.
+      </p>
+    </div>
+
+    <!-- DIVIDER -->
+    <div class="auth-divider"></div>
+
+    <!-- RIGHT -->
+    <div class="auth-right">
+      <h2>Welcome back</h2>
+      <p class="subtitle">Log in to continue your learning journey</p>
+
+      <form class="login-form" onsubmit="handleLogin(event)">
+
+        <div class="field">
+          <label for="email">Email address <span>*</span></label>
+          <input type="email" id="email" placeholder="name@email.com" required>
+        </div>
+
+        <div class="field">
+          <label for="password">Password <span>*</span></label>
+          <div class="password-wrapper">
+            <input type="password" id="password" placeholder="Enter password" required>
+            <span class="eye">
+  <svg
+    width="22"
+    height="22"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12z"
+      stroke="#9CA3AF"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <circle
+      cx="12"
+      cy="12"
+      r="3"
+      stroke="#9CA3AF"
+      stroke-width="2"
+    />
+  </svg>
+</span>
+
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label class="checkbox">
+            <input type="checkbox">
+            Stay signed in
+          </label>
+          <a href="#" class="link">Forgot password?</a>
+        </div>
+
+        <button class="btn-primary">Log in</button>
+
+        <div class="divider-text">or</div>
+
+        <button class="btn-google">
+          <img src="assets/google.png" alt="" class="google-icon">
+          Continue with Google
+        </button>
+
+        <p class="bottom-text">
+          Don’t have an account?
+          <a href="register.html">Sign up</a>
+        </p>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function handleLogin(e) {
+  e.preventDefault();
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  if (!email || !password) {
+    alert("Fill all fields");
+    return;
+  }
+
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  if (!user) {
+    alert("User not found. Please register.");
+    return;
+  }
+
+  if (user.email !== email || user.password !== password) {
+    alert("Invalid email or password");
+    return;
+  }
+
+  alert("Login successful 🎉");
+
+  setTimeout(() => {
+    window.location.href = "onstep1.html";
+  }, 500);
+}
+
+
+/* toggle password */
+const passwordInput = document.getElementById('password');
+const eye = document.querySelector('.eye');
+
+eye.addEventListener('click', () => {
+  passwordInput.type =
+    passwordInput.type === 'password' ? 'text' : 'password';
+});
+</script>
+</body>
+</html>
