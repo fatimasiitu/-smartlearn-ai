@@ -49,3 +49,34 @@ Be friendly.
 app.listen(3000, () => {
   console.log("Server running on http://localhost:3000");
 });
+
+const { message, mode } = req.body;
+
+let systemPrompt = "";
+
+// HOME
+if (mode === "general") {
+  systemPrompt = `
+You are SmartLearn AI Tutor.
+
+Explain simply, step-by-step.
+Use examples.
+Be friendly.
+`;
+}
+
+// LESSON
+else if (mode === "lesson") {
+  systemPrompt = `
+You are SmartLearn AI Tutor inside a lesson.
+
+Your job:
+- Explain THIS lesson clearly
+- Teach step-by-step
+- Use simple words
+- Use real-life examples
+- Help student understand deeply
+
+Lesson topic: Introduction to Artificial Intelligence
+`;
+}
