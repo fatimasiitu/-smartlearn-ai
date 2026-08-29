@@ -1,0 +1,135 @@
+.back-link {
+  color: #4f6ef7;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.course-header {
+  margin-bottom: 32px;
+}
+
+.course-header h1 {
+  margin-bottom: 8px;
+  font-size: 22px;
+}
+
+.module {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 12px;
+
+  font-size: 14px;
+}
+
+.module.completed {
+  background: #f8fafc;
+  color: #475569;
+}
+
+.module.active {
+  background: #eef2ff;
+  border-color: #4f6ef7;
+}
+
+.module.locked {
+  background: #ffffff;
+  color: #94a3b8;
+}
+
+.course-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.progress-bar.small {
+  width: 120px;        /* ключевой момент */
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.progress-bar.small .progress {
+  height: 100%;
+  background: #4f6ef7;
+  border-radius: 999px;
+}
+
+.course-module {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 12px;
+}
+
+.course-module.active {
+  background: #f8fafc;
+}
+
+.module-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.module-icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+.module-icon svg {
+  width: 36px;
+  height: 36px;
+}
+
+.module-info .title {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.module-info .meta {
+  font-size: 13px;
+  color: #64748b;
+    margin-top: 4px;
+}
+
+.meta-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.progress-bar.tiny {
+  width: 60px;
+  height: 4px;
+  background: #e5e7eb;
+  border-radius: 999px;
+}
+.module-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.module-status {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}

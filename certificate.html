@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Certificates — SmartLearn AI</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css">
+
+  <style>
+    /* ─────────────────────────────────────
+       PAGE CONTENT
+    ───────────────────────────────────── */
+    .cert-content {
+      padding: 32px;
+    }
+
+    /* ─── HEADING ─── */
+    .cert-heading {
+      margin-bottom: 28px;
+    }
+
+    .cert-heading h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0 0 4px;
+    }
+
+    .cert-heading p {
+      font-size: 14px;
+      color: #6b7280;
+      margin: 0;
+    }
+
+    /* ─── STATS ROW ─── */
+    .cert-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .stat-card {
+      background: #ffffff;
+      border-radius: 18px;
+      border: 1px solid #eef2ff;
+      padding: 20px 22px;
+      box-shadow: 0 4px 20px rgba(79,110,247,0.05);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .stat-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .stat-icon svg {
+      width: 22px;
+      height: 22px;
+      color: white;
+    }
+
+    .stat-info strong {
+      display: block;
+      font-size: 22px;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+
+    .stat-info span {
+      font-size: 12px;
+      color: #6b7280;
+      font-weight: 500;
+    }
+
+    /* ─── TABS ─── */
+    .cert-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid #f1f5f9;
+      margin-bottom: 24px;
+    }
+
+    .c-tab {
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #6b7280;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      position: relative;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .c-tab::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0; right: 0;
+      height: 2px;
+      background: #4f6ef7;
+      border-radius: 2px 2px 0 0;
+      transform: scaleX(0);
+      transition: transform 0.2s;
+    }
+
+    .c-tab:hover { color: #4f6ef7; }
+    .c-tab.active { color: #4f6ef7; font-weight: 600; }
+    .c-tab.active::after { transform: scaleX(1); }
+
+    .c-tab-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #4f6ef7;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .c-tab.active .c-tab-badge {
+      background: #4f6ef7;
+      color: white;
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ─── CERTIFICATE GRID ─── */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    /* ─── CERTIFICATE CARD ─── */
+    .cert-card {
+      background: #ffffff;
+      border-radius: 20px;
+      border: 1px solid #eef2ff;
+      box-shadow: 0 4px 20px rgba(79,110,247,0.05);
+      overflow: hidden;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .cert-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px rgba(79,110,247,0.12);
+      border-color: #c7d2fe;
+    }
+
+    /* certificate preview inside card */
+    .cert-preview {
+      height: 160px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 20px;
+    }
+
+    /* mini certificate document */
+    .mini-cert {
+      width: 220px;
+      height: 130px;
+      background: white;
+      border-radius: 10px;
+      border: 1.5px solid rgba(255,255,255,0.6);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 18px;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+    }
+
+    .mini-cert-top {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .mini-cert-logo {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #4f6ef7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mini-cert-logo svg {
+      width: 10px;
+      height: 10px;
+      color: white;
+    }
+
+    .mini-cert-brand {
+      font-size: 7px;
+      font-weight: 700;
+      color: #374151;
+      letter-spacing: 0.04em;
+    }
+
+    .mini-cert-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 10px;
+      font-weight: 700;
+      color: #0f172a;
+      text-align: center;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .mini-cert-name {
+      font-size: 8px;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+
+    .mini-cert-line {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #4f6ef7, transparent);
+      margin-bottom: 6px;
+    }
+
+    .mini-cert-badge {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mini-cert-badge svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* blurred bg blobs */
+    .cert-preview .blob1,
+    .cert-preview .blob2 {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.35;
+      filter: blur(24px);
+    }
+
+    .cert-preview .blob1 {
+      width: 120px; height: 120px;
+      top: -20px; left: -20px;
+    }
+
+    .cert-preview .blob2 {
+      width: 100px; height: 100px;
+      bottom: -10px; right: -10px;
+    }
+
+    /* CARD BODY */
+    .cert-card-body {
+      padding: 18px 20px 20px;
+    }
+
+    .cert-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+
+    .cert-card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.3;
+    }
+
+    .cert-card-date {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 3px;
+    }
+
+    .cert-earned-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .cert-earned-badge.earned {
+      background: #dcfce7;
+      color: #16a34a;
+    }
+
+    .cert-earned-badge.locked {
+      background: #f3f4f6;
+      color: #9ca3af;
+    }
+
+    /* progress row */
+    .cert-progress-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #6b7280;
+      margin-bottom: 7px;
+    }
+
+    .cert-progress-row strong { color: #0f172a; font-weight: 600; }
+
+    .cert-prog-bar {
+      height: 5px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .cert-prog-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 0.9s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* footer */
+    .cert-card-footer {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-download {
+      flex: 1;
+      height: 38px;
+      border: none;
+      border-radius: 11px;
+      background: linear-gradient(135deg, #4f6ef7, #6a7efc);
+      color: white;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      box-shadow: 0 3px 12px rgba(79,110,247,0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-download svg { width: 14px; height: 14px; }
+
+    .btn-download:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(79,110,247,0.38);
+    }
+
+    .btn-download.disabled {
+      background: #e5e7eb;
+      color: #9ca3af;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+
+    .btn-download.disabled:hover { transform: none; }
+
+    .btn-share {
+      width: 38px;
+      height: 38px;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 11px;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #9ca3af;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .btn-share svg { width: 15px; height: 15px; }
+
+    .btn-share:hover {
+      border-color: #c7d2fe;
+      color: #4f6ef7;
+      background: #f5f7ff;
+    }
+
+    /* ─── EMPTY STATE ─── */
+    .cert-empty {
+      text-align: center;
+      padding: 64px 40px;
+    }
+
+    .cert-empty-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      background: #eef2ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .cert-empty-icon svg { width: 32px; height: 32px; color: #4f6ef7; }
+
+    .cert-empty h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #0f172a;
+      margin: 0 0 8px;
+    }
+
+    .cert-empty p {
+      font-size: 13px;
+      color: #6b7280;
+      margin: 0 0 24px;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .btn-go {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 22px;
+      border-radius: 12px;
+      border: none;
+      background: linear-gradient(135deg, #4f6ef7, #6a7efc);
+      color: white;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(79,110,247,0.3);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-go:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(79,110,247,0.4);
+    }
+
+    /* ─────────────────────────────────────
+       MODAL — FULL CERTIFICATE PREVIEW
+    ───────────────────────────────────── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,0.55);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-box {
+      background: white;
+      border-radius: 24px;
+      width: 100%;
+      max-width: 780px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.2);
+      overflow: hidden;
+      transform: scale(0.95) translateY(20px);
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    .modal-overlay.open .modal-box {
+      transform: scale(1) translateY(0);
+    }
+
+    /* Close button */
+    .modal-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #6b7280;
+      z-index: 2;
+      transition: all 0.2s;
+    }
+
+    .modal-close:hover { background: #f5f7ff; color: #4f6ef7; }
+    .modal-close svg { width: 16px; height: 16px; }
+
+    /* ─── THE ACTUAL CERTIFICATE ─── */
+    .certificate-doc {
+      position: relative;
+      padding: 52px 60px 44px;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    /* corner ornaments */
+    .cert-corner {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      opacity: 0.18;
+    }
+
+    .cert-corner.tl { top: 0; left: 0; }
+    .cert-corner.tr { top: 0; right: 0; transform: rotate(90deg); }
+    .cert-corner.bl { bottom: 0; left: 0; transform: rotate(-90deg); }
+    .cert-corner.br { bottom: 0; right: 0; transform: rotate(180deg); }
+
+    /* top border line */
+    .cert-border-top {
+      height: 5px;
+      background: linear-gradient(90deg, #4f6ef7, #818cf8, #4f6ef7);
+      margin: 0 -60px 40px;
+      margin-top: -52px;
+      margin-left: -60px;
+      width: calc(100% + 120px);
+      border-radius: 0;
+    }
+
+    .cert-doc-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+
+    .cert-doc-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cert-doc-brand-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4f6ef7, #6a7efc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(79,110,247,0.3);
+    }
+
+    .cert-doc-brand-dot svg { width: 16px; height: 16px; color: white; }
+
+    .cert-doc-brand-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .cert-doc-id {
+      font-size: 11px;
+      color: #9ca3af;
+      font-family: monospace;
+    }
+
+    /* divider */
+    .cert-h-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #e0e7ff 30%, #e0e7ff 70%, transparent);
+      margin-bottom: 28px;
+    }
+
+    /* main content */
+    .cert-doc-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: #4f6ef7;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .cert-doc-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: #0f172a;
+      text-align: center;
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+
+    .cert-doc-subtitle {
+      font-size: 13px;
+      color: #6b7280;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .cert-doc-name-row {
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    .cert-doc-presented {
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 4px;
+    }
+
+    .cert-doc-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .cert-doc-for {
+      font-size: 13px;
+      color: #6b7280;
+      text-align: center;
+      margin: 8px 0 4px;
+    }
+
+    .cert-doc-course {
+      font-size: 16px;
+      font-weight: 700;
+      color: #4f6ef7;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    /* gold seal */
+    .cert-seal-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      margin-bottom: 32px;
+    }
+
+    .cert-seal {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 0 0 4px rgba(251,191,36,0.2),
+        0 0 0 8px rgba(251,191,36,0.1),
+        0 8px 24px rgba(245,158,11,0.35);
+      position: relative;
+    }
+
+    .cert-seal svg { width: 34px; height: 34px; color: white; }
+
+    .cert-sign-block { text-align: center; }
+
+    .cert-sign-line {
+      width: 120px;
+      height: 1px;
+      background: #374151;
+      margin: 0 auto 6px;
+    }
+
+    .cert-sign-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .cert-sign-role {
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    /* footer bar */
+    .cert-doc-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 20px;
+      border-top: 1px solid #f1f5f9;
+    }
+
+    .cert-doc-footer-item {
+      text-align: center;
+    }
+
+    .cert-doc-footer-item span {
+      display: block;
+      font-size: 10px;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 2px;
+    }
+
+    .cert-doc-footer-item strong {
+      font-size: 12px;
+      color: #374151;
+      font-weight: 600;
+    }
+
+    /* modal bottom actions */
+    .modal-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      padding: 16px 24px 20px;
+      border-top: 1px solid #f1f5f9;
+    }
+
+    .btn-modal-ghost {
+      height: 40px;
+      padding: 0 18px;
+      border-radius: 11px;
+      border: 1.5px solid #e5e7eb;
+      background: transparent;
+      color: #6b7280;
+      font-size: 13px;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: all 0.2s;
+    }
+
+    .btn-modal-ghost svg { width: 15px; height: 15px; }
+    .btn-modal-ghost:hover { background: #f5f7ff; border-color: #c7d2fe; color: #4f6ef7; }
+
+    .btn-modal-primary {
+      height: 40px;
+      padding: 0 22px;
+      border-radius: 11px;
+      border: none;
+      background: linear-gradient(135deg, #4f6ef7, #6a7efc);
+      color: white;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      box-shadow: 0 3px 12px rgba(79,110,247,0.3);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: all 0.2s;
+    }
+
+    .btn-modal-primary svg { width: 15px; height: 15px; }
+    .btn-modal-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(79,110,247,0.4); }
+
+    /* ─── TOAST ─── */
+    .toast {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #0f172a;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 14px;
+      font-size: 13px;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(16px);
+      transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      pointer-events: none;
+      z-index: 200;
+    }
+
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    .toast-dot {
+      width: 20px; height: 20px;
+      background: #22c55e;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .toast-dot svg { width: 11px; height: 11px; }
+  </style>
+</head>
+
+<body>
+<div class="dashboard">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="assets/logo.png" alt="SmartLearn AI">
+      <span>SmartLearn AI</span>
+    </div>
+
+    <nav class="sidebar-nav">
+
+      <a href="dashboard.html">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M3 10.5L12 3l9 7.5V21h-6v-6H9v6H3z" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </span>
+        Dashboard
+      </a>
+
+      <a href="my-courses.html">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 19V5a2 2 0 0 1 2-2h12v16a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2Z" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </span>
+        My Courses
+      </a>
+
+      <a href="#">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M3 3v18h18M7 15v3M12 9v9M17 5v13" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </span>
+        Progress
+      </a>
+
+      <a href="#">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M4 20c1.8-3.5 5-5 8-5s6.2 1.5 8 5" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </span>
+        AI Tutor
+      </a>
+
+      <a class="active" href="certificates.html">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </span>
+        Certificates
+      </a>
+
+      <a href="profile.html">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M19 12h2M3 12h2M12 3v2M12 19v2" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </span>
+        Settings
+      </a>
+
+    </nav>
+  </aside>
+
+  <!-- ── MAIN ── -->
+  <main class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <span class="page-title">Certificates</span>
+      </div>
+      <div class="topbar-right">
+        <button class="icon-btn">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <button class="icon-btn">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M18 8a6 6 0 10-12 0c0 7-3 7-3 7h18s-3 0-3-7Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </button>
+        <div class="user">
+          <div class="avatar">S</div>
+          <span>Serik Islam</span>
+          <svg class="arrow" viewBox="0 0 24 24">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+      </div>
+    </header>
+
+    <!-- PAGE CONTENT -->
+    <section class="content cert-content">
+
+      <!-- HEADING -->
+      <div class="cert-heading">
+        <h1>My Certificates</h1>
+        <p>Complete courses to earn certificates and showcase your skills</p>
+      </div>
+
+      <!-- STATS -->
+      <div class="cert-stats">
+
+        <div class="stat-card">
+          <div class="stat-icon" style="background:linear-gradient(135deg,#4f6ef7,#6a7efc)">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="8" r="4" stroke="white" stroke-width="1.8"/>
+              <path d="M4 20c1.8-3.5 5-5 8-5s6.2 1.5 8 5" stroke="white" stroke-width="1.8"/>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <strong>0</strong>
+            <span>Earned</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon" style="background:linear-gradient(135deg,#f59e0b,#fbbf24)">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="9" stroke="white" stroke-width="1.8"/>
+              <path d="M12 7v5l3 2" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <strong>1</strong>
+            <span>In Progress</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon" style="background:linear-gradient(135deg,#10b981,#34d399)">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 19V5a2 2 0 0 1 2-2h12v16a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2Z" stroke="white" stroke-width="1.8"/>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <strong>1</strong>
+            <span>Courses total</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon" style="background:linear-gradient(135deg,#8b5cf6,#a78bfa)">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1 3-6z" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <strong>0</strong>
+            <span>Shared</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TABS -->
+      <div class="cert-tabs">
+        <button class="c-tab active" onclick="switchTab('earned', this)">
+          Earned <span class="c-tab-badge">0</span>
+        </button>
+        <button class="c-tab" onclick="switchTab('progress', this)">
+          In Progress <span class="c-tab-badge">1</span>
+        </button>
+        <button class="c-tab" onclick="switchTab('all', this)">
+          All courses <span class="c-tab-badge">1</span>
+        </button>
+      </div>
+
+      <!-- ─── TAB: EARNED ─── -->
+      <div class="tab-panel active" id="tab-earned">
+        <div class="cert-empty">
+          <div class="cert-empty-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1 3-6z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>No certificates yet</h3>
+          <p>Complete your first course to earn a certificate and showcase your new skills.</p>
+          <a href="lesson.html" class="btn-go">
+            <svg viewBox="0 0 24 24" fill="none" width="14" height="14">
+              <polygon points="5,3 19,12 5,21" fill="white"/>
+            </svg>
+            Continue learning
+          </a>
+        </div>
+      </div>
+
+      <!-- ─── TAB: IN PROGRESS ─── -->
+      <div class="tab-panel" id="tab-progress">
+        <div class="cert-grid">
+
+          <!-- AI Basics — in progress -->
+          <div class="cert-card" onclick="openModal('ai-basics')">
+            <div class="cert-preview" style="background: linear-gradient(135deg, #eef2ff, #e0e7ff)">
+              <div class="blob1" style="background:#4f6ef7"></div>
+              <div class="blob2" style="background:#818cf8"></div>
+              <div class="mini-cert">
+                <div class="mini-cert-top">
+                  <div class="mini-cert-logo">
+                    <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3" stroke="white" stroke-width="1.8"/><path d="M4 18c1.5-3 4-4 8-4s6.5 1 8 4" stroke="white" stroke-width="1.8"/></svg>
+                  </div>
+                  <span class="mini-cert-brand">SMARTLEARN AI</span>
+                </div>
+                <div class="mini-cert-title">Certificate of Completion</div>
+                <div class="mini-cert-name">Serik Islam</div>
+                <div class="mini-cert-line"></div>
+                <div class="mini-cert-badge" style="background:linear-gradient(135deg,#4f6ef7,#6a7efc)">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1 3-6z" fill="white"/></svg>
+                </div>
+              </div>
+            </div>
+            <div class="cert-card-body">
+              <div class="cert-card-header">
+                <div>
+                  <div class="cert-card-title">AI Basics</div>
+                  <div class="cert-card-date">Started April 2026</div>
+                </div>
+                <span class="cert-earned-badge locked">
+                  🔒 Locked
+                </span>
+              </div>
+              <div class="cert-progress-row">
+                <span>Course progress</span>
+                <strong>10%</strong>
+              </div>
+              <div class="cert-prog-bar">
+                <div class="cert-prog-fill" data-target="10" style="width:0%;background:linear-gradient(90deg,#4f6ef7,#6a7efc)"></div>
+              </div>
+              <div class="cert-card-footer">
+                <button class="btn-download disabled" disabled>
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><polyline points="7,10 12,15 17,10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="12" y1="15" x2="12" y2="3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                  Complete to unlock
+                </button>
+                <button class="btn-share" onclick="event.stopPropagation(); showToast('Nothing to share yet')" title="Share">
+                  <svg viewBox="0 0 24 24" fill="none"><circle cx="18" cy="5" r="3" stroke="currentColor" stroke-width="1.8"/><circle cx="6" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="19" r="3" stroke="currentColor" stroke-width="1.8"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" stroke="currentColor" stroke-width="1.8"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" stroke="currentColor" stroke-width="1.8"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ─── TAB: ALL ─── -->
+      <div class="tab-panel" id="tab-all">
+        <div class="cert-grid">
+
+          <div class="cert-card" onclick="openModal('ai-basics')">
+            <div class="cert-preview" style="background: linear-gradient(135deg, #eef2ff, #e0e7ff)">
+              <div class="blob1" style="background:#4f6ef7"></div>
+              <div class="blob2" style="background:#818cf8"></div>
+              <div class="mini-cert">
+                <div class="mini-cert-top">
+                  <div class="mini-cert-logo">
+                    <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3" stroke="white" stroke-width="1.8"/><path d="M4 18c1.5-3 4-4 8-4s6.5 1 8 4" stroke="white" stroke-width="1.8"/></svg>
+                  </div>
+                  <span class="mini-cert-brand">SMARTLEARN AI</span>
+                </div>
+                <div class="mini-cert-title">Certificate of Completion</div>
+                <div class="mini-cert-name">Serik Islam</div>
+                <div class="mini-cert-line"></div>
+                <div class="mini-cert-badge" style="background:linear-gradient(135deg,#4f6ef7,#6a7efc)">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1 3-6z" fill="white"/></svg>
+                </div>
+              </div>
+            </div>
+            <div class="cert-card-body">
+              <div class="cert-card-header">
+                <div>
+                  <div class="cert-card-title">AI Basics</div>
+                  <div class="cert-card-date">Started April 2026</div>
+                </div>
+                <span class="cert-earned-badge locked">🔒 Locked</span>
+              </div>
+              <div class="cert-progress-row">
+                <span>Course progress</span>
+                <strong>10%</strong>
+              </div>
+              <div class="cert-prog-bar">
+                <div class="cert-prog-fill" data-target="10" style="width:0%;background:linear-gradient(90deg,#4f6ef7,#6a7efc)"></div>
+              </div>
+              <div class="cert-card-footer">
+                <button class="btn-download disabled" disabled>
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><polyline points="7,10 12,15 17,10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="12" y1="15" x2="12" y2="3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                  Complete to unlock
+                </button>
+                <button class="btn-share" onclick="event.stopPropagation(); showToast('Nothing to share yet')" title="Share">
+                  <svg viewBox="0 0 24 24" fill="none"><circle cx="18" cy="5" r="3" stroke="currentColor" stroke-width="1.8"/><circle cx="6" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="19" r="3" stroke="currentColor" stroke-width="1.8"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" stroke="currentColor" stroke-width="1.8"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" stroke="currentColor" stroke-width="1.8"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+  </main>
+</div>
+
+<!-- ══════════════════════════════════════
+     MODAL — CERTIFICATE PREVIEW
+══════════════════════════════════════ -->
+<div class="modal-overlay" id="certModal" onclick="closeModal(event)">
+  <div class="modal-box" style="position:relative">
+
+    <button class="modal-close" onclick="closeModal()">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+
+    <!-- THE CERTIFICATE DOCUMENT -->
+    <div class="certificate-doc" id="certDoc">
+
+      <!-- colored top bar -->
+      <div class="cert-border-top"></div>
+
+      <!-- corner ornaments -->
+      <svg class="cert-corner tl" viewBox="0 0 80 80" fill="none">
+        <path d="M0 0 Q40 0 40 40 Q40 0 80 0" stroke="#4f6ef7" stroke-width="2" fill="none" opacity="0.4"/>
+        <path d="M0 0 Q20 0 20 20 Q20 0 40 0" stroke="#4f6ef7" stroke-width="1.5" fill="none" opacity="0.3"/>
+        <circle cx="4" cy="4" r="3" fill="#4f6ef7" opacity="0.3"/>
+      </svg>
+      <svg class="cert-corner tr" viewBox="0 0 80 80" fill="none">
+        <path d="M0 0 Q40 0 40 40 Q40 0 80 0" stroke="#4f6ef7" stroke-width="2" fill="none" opacity="0.4"/>
+        <path d="M0 0 Q20 0 20 20 Q20 0 40 0" stroke="#4f6ef7" stroke-width="1.5" fill="none" opacity="0.3"/>
+        <circle cx="4" cy="4" r="3" fill="#4f6ef7" opacity="0.3"/>
+      </svg>
+      <svg class="cert-corner bl" viewBox="0 0 80 80" fill="none">
+        <path d="M0 0 Q40 0 40 40 Q40 0 80 0" stroke="#4f6ef7" stroke-width="2" fill="none" opacity="0.4"/>
+        <path d="M0 0 Q20 0 20 20 Q20 0 40 0" stroke="#4f6ef7" stroke-width="1.5" fill="none" opacity="0.3"/>
+        <circle cx="4" cy="4" r="3" fill="#4f6ef7" opacity="0.3"/>
+      </svg>
+      <svg class="cert-corner br" viewBox="0 0 80 80" fill="none">
+        <path d="M0 0 Q40 0 40 40 Q40 0 80 0" stroke="#4f6ef7" stroke-width="2" fill="none" opacity="0.4"/>
+        <path d="M0 0 Q20 0 20 20 Q20 0 40 0" stroke="#4f6ef7" stroke-width="1.5" fill="none" opacity="0.3"/>
+        <circle cx="4" cy="4" r="3" fill="#4f6ef7" opacity="0.3"/>
+      </svg>
+
+      <!-- header -->
+      <div class="cert-doc-header">
+        <div class="cert-doc-brand">
+          <div class="cert-doc-brand-dot">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3" stroke="white" stroke-width="1.8"/><path d="M4 18c1.5-3 4-4 8-4s6.5 1 8 4" stroke="white" stroke-width="1.8"/></svg>
+          </div>
+          <span class="cert-doc-brand-name">SmartLearn AI</span>
+        </div>
+        <span class="cert-doc-id">ID: SL-2026-001</span>
+      </div>
+
+      <div class="cert-h-divider"></div>
+
+      <!-- body -->
+      <div class="cert-doc-label">Certificate of Completion</div>
+
+      <div class="cert-doc-title">This certifies that</div>
+
+      <div class="cert-doc-name-row">
+        <div class="cert-doc-name">Serik Islam</div>
+      </div>
+
+      <div class="cert-doc-for">has successfully completed the course</div>
+      <div class="cert-doc-course">AI Basics — Introduction to Artificial Intelligence</div>
+
+      <div class="cert-h-divider"></div>
+
+      <!-- seal + signatures -->
+      <div class="cert-seal-row">
+        <div class="cert-sign-block">
+          <div class="cert-sign-line"></div>
+          <div class="cert-sign-name">SmartLearn AI</div>
+          <div class="cert-sign-role">Issued by</div>
+        </div>
+
+        <div class="cert-seal">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1 3-6z" fill="white" stroke="white" stroke-width="0.5"/>
+          </svg>
+        </div>
+
+        <div class="cert-sign-block">
+          <div class="cert-sign-line"></div>
+          <div class="cert-sign-name">AI Tutor System</div>
+          <div class="cert-sign-role">Verified by</div>
+        </div>
+      </div>
+
+      <!-- footer -->
+      <div class="cert-doc-footer">
+        <div class="cert-doc-footer-item">
+          <span>Issued on</span>
+          <strong>—</strong>
+        </div>
+        <div class="cert-doc-footer-item">
+          <span>Duration</span>
+          <strong>4 weeks</strong>
+        </div>
+        <div class="cert-doc-footer-item">
+          <span>Level</span>
+          <strong>Beginner</strong>
+        </div>
+        <div class="cert-doc-footer-item">
+          <span>Status</span>
+          <strong style="color:#f59e0b">In Progress</strong>
+        </div>
+      </div>
+
+    </div><!-- /certificate-doc -->
+
+    <!-- modal actions -->
+    <div class="modal-actions">
+      <button class="btn-modal-ghost" onclick="closeModal()">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        Close
+      </button>
+      <button class="btn-modal-ghost" onclick="showToast('Link copied to clipboard!')">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="18" cy="5" r="3" stroke="currentColor" stroke-width="1.8"/><circle cx="6" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="19" r="3" stroke="currentColor" stroke-width="1.8"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49" stroke="currentColor" stroke-width="1.8"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" stroke="currentColor" stroke-width="1.8"/></svg>
+        Share
+      </button>
+      <button class="btn-modal-primary" onclick="printCert()">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" stroke="white" stroke-width="1.8" stroke-linecap="round"/><polyline points="7,10 12,15 17,10" stroke="white" stroke-width="1.8" stroke-linecap="round"/><line x1="12" y1="15" x2="12" y2="3" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>
+        Download PDF
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-dot">
+    <svg viewBox="0 0 24 24" fill="none" width="11" height="11">
+      <path d="M20 6L9 17l-5-5" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <span id="toastMsg">Done!</span>
+</div>
+
+<script>
+  // ── TABS ──────────────────────────────────
+  function switchTab(name, btn) {
+    document.querySelectorAll('.c-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + name).classList.add('active');
+  }
+
+  // ── MODAL ─────────────────────────────────
+  function openModal(id) {
+    document.getElementById('certModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(e) {
+    if (e && e.target !== document.getElementById('certModal')) return;
+    document.getElementById('certModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      document.getElementById('certModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+
+  // ── PRINT / DOWNLOAD ─────────────────────
+  function printCert() {
+    const doc = document.getElementById('certDoc');
+    const win = window.open('', '_blank', 'width=900,height=700');
+    win.document.write(`
+      <!DOCTYPE html><html><head>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+        <style>
+          * { box-sizing: border-box; margin: 0; padding: 0; }
+          body { font-family: 'Inter', sans-serif; }
+          @media print { @page { size: A4 landscape; margin: 0; } body { print-color-adjust: exact; } }
+        </style>
+      </head><body>${doc.outerHTML}</body></html>
+    `);
+    win.document.close();
+    win.focus();
+    setTimeout(() => { win.print(); }, 600);
+    showToast('Opening print dialog…');
+  }
+
+  // ── TOAST ─────────────────────────────────
+  let toastTimer;
+  function showToast(msg) {
+    document.getElementById('toastMsg').textContent = msg;
+    const t = document.getElementById('toast');
+    clearTimeout(toastTimer);
+    t.classList.add('show');
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  // ── PROGRESS BAR ANIMATION ───────────────
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      document.querySelectorAll('.cert-prog-fill[data-target]').forEach(bar => {
+        bar.style.width = bar.dataset.target + '%';
+      });
+    }, 300);
+  });
+</script>
+<script src="topbar.js"></script>
+</body>
+</html>

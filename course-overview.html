@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Text & Prompt Engineering — SmartLearn AI</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="course-overview.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="assets/logo.png" alt="SmartLearn AI logo">
+      <span>SmartLearn AI</span>
+    </div>
+
+    <nav class="sidebar-nav">
+
+      <a href="dashboard.html">
+        <span class="icon">
+          <!-- dashboard svg -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M3 10.5L12 3l9 7.5V21h-6v-6H9v6H3v-10.5Z"
+              stroke="currentColor" fill="currentColor" color="#4f6ef7"  stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span>Dashboard</span>
+      </a>
+
+      <a class="active" href="#">
+        <span class="icon">
+          <!-- document svg -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="3" width="18" height="18" rx="3"
+              stroke="currentColor" stroke-width="1.6"/>
+            <path d="M7 8h10M7 12h10M7 16h6"
+              stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span>Text & Prompt Engineering</span>
+      </a>
+
+      <a href="#">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M3 3v18h18M7 15v3M12 9v9M17 5v13"
+              stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </span>
+        <span>Progress</span>
+      </a>
+
+      <a href="#">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </span>
+        <span>Settings</span>
+      </a>
+
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <a href="dashboard.html" class="back-link">← Dashboard</a>
+        /
+        <span class="page-title">Text & Prompt Engineering</span>
+      </div>
+
+  <div class="topbar-right">
+    <button class="icon-btn" aria-label="Notifications">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+        <path d="M15 17H9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M18 8a6 6 0 10-12 0c0 7-3 7-3 7h18s-3 0-3-7Z"
+          stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <div class="avatar">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+        <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M4 20c1.8-3.5 5-5 8-5s6.2 1.5 8 5"
+          stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+    </header>
+
+    <!-- CONTENT -->
+    <section class="content">
+
+      <!-- COURSE HEADER -->
+<div class="course-header">
+  <h1>Text & Prompt Engineering</h1>
+
+  <!-- строка ТОЛЬКО с текстом -->
+  <div class="course-progress-text">
+    <span class="muted">Progress: <strong>35%</strong></span>
+  </div>
+
+  <!-- строка с линией и уроками -->
+  <div class="course-progress-row">
+    <div class="progress-bar small">
+      <div class="progress" style="width:35%"></div>
+    </div>
+
+    <span class="muted">4 / 12 lessons · About 2 hours left</span>
+  </div>
+</div>
+
+      <div class="grid">
+
+        <!-- LEFT -->
+        <div class="left">
+         <div class="card">
+  <h3>Course modules</h3>
+
+  <!-- COMPLETED -->
+  <div class="course-module">
+    <div class="module-left">
+      <span class="module-icon completed">
+        <!-- check -->
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" fill="none" stroke="#22c55e" stroke-width="2"/>
+          <path d="M8 12.5l2.5 2.5L16 9"
+                fill="none" stroke="#22c55e" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+
+      <div class="module-info">
+        <span class="title">The fundamentals of text prompts</span>
+        <span class="meta">5 minutes</span>
+      </div>
+    </div>
+
+    <div class="module-status completed">Completed ✓</div>
+  </div>
+
+  <div class="course-module">
+    <div class="module-left">
+      <span class="module-icon completed">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" fill="none" stroke="#22c55e" stroke-width="2"/>
+          <path d="M8 12.5l2.5 2.5L16 9"
+                fill="none" stroke="#22c55e" stroke-width="2"/>
+        </svg>
+      </span>
+
+      <div class="module-info">
+        <span class="title">Understanding prompt variables</span>
+        <span class="meta">8 minutes</span>
+      </div>
+    </div>
+
+    <div class="module-status completed">Completed ✓</div>
+  </div>
+
+  <!-- ACTIVE -->
+  <div class="course-module active">
+    <div class="module-left">
+      <span class="module-icon active">
+        <!-- play -->
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" fill="#eef2ff"/>
+          <path d="M10 8l6 4-6 4V8Z" fill="#4f6ef7"/>
+        </svg>
+      </span>
+
+      <div class="module-info">
+        <span class="title">Prompt structure basics</span>
+
+        <div class="meta-row">
+          <span class="meta">2 / 4 lessons</span>
+          <div class="progress-bar tiny">
+            <div class="progress" style="width:50%"></div>
+          </div>
+          <span class="meta">15 minutes</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-course">Continue →</button>
+  </div>
+
+  <!-- LOCKED -->
+  <div class="course-module">
+    <div class="module-left">
+      <span class="module-icon locked">
+        <!-- lock -->
+        <svg viewBox="0 0 24 24">
+          <rect x="6" y="10" width="12" height="9" rx="2"
+                fill="none" stroke="#94a3b8" stroke-width="1.6"/>
+          <path d="M9 10V7a3 3 0 1 1 6 0v3"
+                fill="none" stroke="#94a3b8" stroke-width="1.6"/>
+        </svg>
+      </span>
+
+      <div class="module-info">
+        <span class="title muted">Crafting effective questions</span>
+        <span class="meta">10 minutes</span>
+      </div>
+    </div>
+
+    <div class="module-status locked">Locked 🔒</div>
+  </div>
+
+  <div class="course-module">
+    <div class="module-left">
+      <span class="module-icon locked">
+        <svg viewBox="0 0 24 24">
+          <rect x="6" y="10" width="12" height="9" rx="2"
+                fill="none" stroke="#94a3b8" stroke-width="1.6"/>
+          <path d="M9 10V7a3 3 0 1 1 6 0v3"
+                fill="none" stroke="#94a3b8" stroke-width="1.6"/>
+        </svg>
+      </span>
+
+      <div class="module-info">
+        <span class="title muted">Techniques for refining prompts</span>
+        <span class="meta">10 minutes</span>
+      </div>
+    </div>
+
+    <div class="module-status locked">Locked 🔒</div>
+  </div>
+
+  <div class="course-module">
+    <div class="module-left">
+      <span class="module-icon locked">
+        <svg viewBox="0 0 24 24">
+          <rect x="6" y="10" width="12" height="9" rx="2"
+                fill="none" stroke="#94a3b8" stroke-width="1.6"/>
+          <path d="M9 10V7a3 3 0 1 1 6 0v3"
+                fill="none" stroke="#94a3b8" stroke-width="1.6"/>
+        </svg>
+      </span>
+
+      <div class="module-info">
+        <span class="title muted">Evaluating prompt outcomes</span>
+        <span class="meta">8 minutes</span>
+      </div>
+    </div>
+
+    <div class="module-status locked">Locked 🔒</div>
+  </div>
+
+  <div class="course-module">
+    <div class="module-left">
+      <span class="module-icon locked">
+        <svg viewBox="0 0 24 24">
+          <rect x="6" y="10" width="12" height="9" rx="2"
+                fill="none" stroke="#94a3b8" stroke-width="1.6"/>
+          <path d="M9 10V7a3 3 0 1 1 6 0v3"
+                fill="none" stroke="#94a3b8" stroke-width="1.6"/>
+        </svg>
+      </span>
+
+      <div class="module-info">
+        <span class="title muted">Ethical considerations in prompt design</span>
+        <span class="meta">7 minutes</span>
+      </div>
+    </div>
+
+    <div class="module-status locked">Locked 🔒</div>
+  </div>
+
+  <div class="course-module">
+    <div class="module-left">
+      <span class="module-icon locked">
+        <svg viewBox="0 0 24 24">
+          <rect x="6" y="10" width="12" height="9" rx="2"
+                fill="none" stroke="#94a3b8" stroke-width="1.6"/>
+          <path d="M9 10V7a3 3 0 1 1 6 0v3"
+                fill="none" stroke="#94a3b8" stroke-width="1.6"/>
+        </svg>
+      </span>
+
+      <div class="module-info">
+        <span class="title muted">Advanced prompt strategies</span>
+        <span class="meta">12 minutes</span>
+      </div>
+    </div>
+
+    <div class="module-status locked">Locked 🔒</div>
+  </div>
+
+</div>
+
+</div> 
+
+<div class="right">
+
+  <!-- Learning progress -->
+  <div class="card">
+    <h3>Learning progress</h3>
+
+    <div class="stat-row">
+      <span class="label">Completion</span>
+      <strong>35%</strong>
+    </div>
+
+    <div class="stat-row">
+      <span class="label">Current pace</span>
+      <strong>Normal</strong>
+    </div>
+
+    <div class="stat-row">
+      <span class="label">Recommended difficulty</span>
+      <strong>Intermediate</strong>
+    </div>
+  </div>
+
+  <!-- AI recommendation -->
+  <div class="card">
+    <h3>AI recommendation</h3>
+    <p class="muted">
+      Based on your progress, we suggest continuing Module 2:
+      Prompt structure basics.
+    </p>
+    <a href="#" class="link">Continue learning</a>
+  </div>
+
+</div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+</body>
+</html>
