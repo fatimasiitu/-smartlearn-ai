@@ -20,65 +20,163 @@ body {
   width: 240px;
   background: #ffffff;
   border-right: 1px solid #e5e7eb;
-  padding: 24px 20px;
+  padding: 28px 20px;
 }
 
-/* LOGO */
+
+
 .sidebar-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 600;
-  margin-bottom: 32px;
-  color: #0f172a;
-}
-
-.sidebar-logo img {
-  width: 28px;
-  height: 28px;
-}
-
-/* NAV */
-.sidebar-nav a {
   display: flex;
   align-items: center;
   gap: 12px;
 
-  padding: 10px 14px;
-  border-radius: 10px;
+  margin-bottom: 24px; 
+  margin-top: 0;       
 
-  color: #475569;
-  text-decoration: none;
-  font-size: 14px;
-  margin-bottom: 8px;
-
-  transition: background 0.2s ease, color 0.2s ease;
+  padding-top: 4px;   
 }
 
-.sidebar-nav .icon {
-  width: 20px;
-  height: 20px;
-  display: inline-flex;
+.sidebar-logo img {
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  object-fit: contain;
+}
+
+/* ICON */
+.icon {
+  width: 22px;
+  height: 22px;
+  min-width: 22px; 
+}
+
+.icon svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.sidebar-nav a {
+  display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 14px;
+
+  padding: 12px 14px;
+  border-radius: 14px;
+
+  font-size: 14px;
+  color: #6b7280;
+  text-decoration: none;
+
+  transition: 0.2s;
 }
 
-.sidebar-nav svg {
-  width: 20px;
-  height: 20px;
+.sidebar-nav a span {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
 }
 
+.sidebar-nav a:hover {
+  background: #f5f7ff;
+  color: #4f6ef7;
+}
 
-/* ACTIVE */
 .sidebar-nav a.active {
   background: #eef2ff;
   color: #4f6ef7;
+  font-weight: 500; /* 🔥 ВАЖНО */
+}
+
+.sidebar-logo span {
+  font-size: 18px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ICON BUTTON */
+.icon-btn {
+  width: 36px;
+  height: 36px;
+
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  color: #6b7280;
+
+  transition: 0.2s;
+}
+
+.icon-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-btn:hover {
+  background: #f5f7ff;
+  color: #4f6ef7;
+}
+
+/* USER */
+.user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* AVATAR */
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #4f6ef7;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   font-weight: 600;
 }
 
-/* HOVER */
-.sidebar-nav a:hover {
-  background: #f1f5f9;
+/* ARROW */
+.arrow {
+  width: 14px;
+  height: 14px;
+  color: #6b7280;
+}
+
+/* GRID */
+.lesson-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 28px;
+  align-items: start; /* важно */
+}
+
+/* HEADER */
+.lesson-header h1 {
+  font-size: 26px;
+  margin-bottom: 6px;
+}
+
+.lesson-sub {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 10px;
 }
 
 
@@ -116,16 +214,22 @@ body {
 /* CARDS */
 .card {
   background: #ffffff;
-  border-radius: 16px;
+  border-radius: 20px;
   padding: 24px;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
   margin-bottom: 24px;
+
+  border: 1px solid #eef2ff;
+
+  box-shadow:
+    0 10px 30px rgba(79,110,247,0.05),
+    0 2px 6px rgba(0,0,0,0.02);
 }
 
 .card h3 {
-  margin-top: 0;
-  margin-bottom: 16px;
   font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 18px;
 }
 
 /* COURSES */
@@ -157,16 +261,7 @@ body {
   border-radius: 999px;
 }
 
-/* BUTTON */
-.btn {
-  background: #4f6ef7;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 14px;
-  font-size: 13px;
-  cursor: pointer;
-}
+
 
 /* RIGHT SIDE */
 .progress-circle {
@@ -229,20 +324,6 @@ body {
   display: flex;
   align-items: center;
   gap: 16px;
-}
-
-.icon-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  border: 1px solid #e5e7eb;
-  background: #ffffff;
-  color: #64748b;
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .icon-btn:hover {
@@ -312,30 +393,28 @@ body {
 }
 
 /* COURSE ROW (как в рефе) */
-.course-row {
-  display: grid;
-  grid-template-columns: 48px 1fr auto;
-  gap: 16px;
-  align-items: center;
+.btn {
+  background: linear-gradient(135deg, #4f6ef7, #6a7efc);
+  color: white;
 
-  padding: 16px;
-  border-radius: 14px;
-  border: 1px solid #e5e7eb;
-  background: #ffffff;
+  border: none;
+  border-radius: 12px;
+
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  box-shadow: 0 6px 16px rgba(79,110,247,0.25);
+  transition: 0.2s;
 }
 
-/* ICON */
-.course-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: #eef2ff;
-  color: #4f6ef7;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(79,110,247,0.35);
 }
+
 
 .course-icon svg {
   width: 22px;
@@ -362,31 +441,40 @@ body {
 }
 
 /* COURSE ROW — как в референсе */
+/* УДАЛИТЬ ЭТО */
 .course-row {
   display: flex;
   align-items: center;
   gap: 16px;
 
-  background: #f8fafc;
-  border: 1px solid #e5e7eb;
+  padding: 16px 18px;
   border-radius: 14px;
 
-  padding: 16px 18px;
-  margin-bottom: 14px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+
+  transition: 0.2s;
+}
+
+.course-row:hover {
+  background: #f5f7ff;
+  border-color: #e0e7ff;
 }
 
 /* ICON */
 .course-icon {
   width: 44px;
   height: 44px;
-  border-radius: 10px;
+
+  border-radius: 12px;
   background: #eef2ff;
   color: #4f6ef7;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+
+  box-shadow: 0 4px 10px rgba(79,110,247,0.15);
 }
 
 .course-icon svg {
@@ -400,14 +488,14 @@ body {
 }
 
 .course-info strong {
-  display: block;
-  font-size: 14.5px;
-  margin-bottom: 2px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
 }
 
 .course-info span {
   font-size: 13px;
-  color: #64748b;
+  color: #6b7280;
 }
 
 /* PROGRESS */
@@ -415,27 +503,18 @@ body {
   height: 6px;
   background: #e5e7eb;
   border-radius: 999px;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
 .progress {
   height: 100%;
-  background: #4f6ef7;
   border-radius: 999px;
+
+  background: linear-gradient(90deg, #4f6ef7, #6a7efc);
 }
 
 /* BUTTON — как в рефе */
-.btn {
-  background: #4f6ef7;
-  color: #ffffff;
-  border: none;
-  border-radius: 10px;
-  padding: 8px 16px;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  white-space: nowrap;
-}
+
 
 /* === LEARNING PROGRESS (1:1 with reference) === */
 

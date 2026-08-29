@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Lesson 3 — SmartLearn AI</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="lesson2.css" />
+
+<style>
+/* ── LESSON 3 EXTRA STYLES ── */
+
+/* steps list inside explanation */
+.steps-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+}
+
+.steps-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+
+.step-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #4f6ef7;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.step-body strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 2px;
+}
+
+.step-body span {
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+/* flow diagram in explanation right side */
+.flow-diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 16px 20px;
+  background: #f8faff;
+  border-radius: 16px;
+  border: 1px solid #eef2ff;
+  min-width: 200px;
+}
+
+.flow-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #4f6ef7;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.flow-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 12px;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #eef2ff;
+  box-shadow: 0 2px 8px rgba(79,110,247,0.06);
+}
+
+.flow-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #eef2ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.flow-icon svg {
+  width: 16px;
+  height: 16px;
+  color: #4f6ef7;
+}
+
+.flow-step-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.flow-arrow {
+  display: flex;
+  justify-content: center;
+  color: #c7d2fe;
+  margin: 4px 0;
+}
+
+.flow-arrow svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* example section — cat image flow */
+.example-flow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.example-flow-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.example-flow-box {
+  width: 100px;
+  height: 80px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid #eef2ff;
+  background: #f8faff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-flow-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.example-flow-box.dark {
+  background: #1e1b4b;
+}
+
+.example-flow-label {
+  font-size: 11px;
+  color: #6b7280;
+  max-width: 100px;
+  line-height: 1.3;
+  font-weight: 500;
+}
+
+.flow-arrow-h {
+  color: #9ca3af;
+  font-size: 20px;
+  flex-shrink: 0;
+  margin-top: -18px;
+}
+
+/* quiz layout — left options + right tip */
+.quiz-inner {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: 20px;
+  align-items: start;
+}
+
+.quiz-tip {
+  background: #f8faff;
+  border: 1px solid #eef2ff;
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.quiz-tip-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.quiz-tip-header svg {
+  width: 18px;
+  height: 18px;
+  color: #4f6ef7;
+}
+
+.quiz-tip-header span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4f6ef7;
+}
+
+.quiz-tip p {
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* progress fill override for lesson 3 = 30% */
+.progress-fill {
+  width: 30%;
+}
+
+/* right sidebar progress ring — lesson 3 = 30% */
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="sidebar-logo">
+      <img src="assets/logo.png" alt="SmartLearn AI">
+      <span>SmartLearn AI</span>
+    </div>
+
+    <nav class="sidebar-nav">
+
+      <a href="dashboard.html">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M3 10.5L12 3l9 7.5V21h-6v-6H9v6H3z" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </span>
+        Dashboard
+      </a>
+
+      <a class="active" href="mycourses.html">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 19V5a2 2 0 0 1 2-2h12v16a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2Z" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </span>
+        My Courses
+      </a>
+
+      <a href="progress.html">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M3 3v18h18M7 15v3M12 9v9M17 5v13" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </span>
+        Progress
+      </a>
+
+      <a href="tutor.html">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M4 20c1.8-3.5 5-5 8-5s6.2 1.5 8 5" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </span>
+        AI Tutor
+      </a>
+
+      <a href="certificate.html">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </span>
+        Certificates
+      </a>
+
+      <a href="claude.html">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M19 12h2M3 12h2M12 3v2M12 19v2" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </span>
+        Settings
+      </a>
+
+    </nav>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+
+      <!-- LEFT -->
+      <div class="topbar-left">
+        <span>Dashboard</span>
+        <span class="divider">›</span>
+        <span>Course: AI Basics</span>
+        <span class="divider">›</span>
+        <strong>Lesson 3</strong>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="topbar-right">
+
+        <button class="icon-btn">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79Z"
+              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <button class="icon-btn">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M18 8a6 6 0 10-12 0c0 7-3 7-3 7h18s-3 0-3-7Z"
+              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </button>
+
+        <div class="user">
+          <div class="avatar">S</div>
+          <span>Serik Islam</span>
+          <svg class="arrow" viewBox="0 0 24 24">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+
+      </div>
+    </header>
+
+    <div class="lesson-layout">
+
+      <!-- LEFT COLUMN -->
+      <div class="lesson">
+
+        <!-- ── HERO CARD ── -->
+        <div class="card main-card">
+
+          <div class="lesson-hero">
+
+            <div class="hero-left">
+              <span class="lesson-label">Lesson 3</span>
+              <h1>How AI Learns</h1>
+              <p>Understand the basic process of how artificial intelligence learns from data.</p>
+            </div>
+
+            <div class="hero-right">
+              <div class="progress-header">
+                <span>Lesson progress</span>
+                <strong>30%</strong>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill"></div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ── 1. EXPLANATION ── -->
+          <div class="explanation-card">
+
+            <div class="ex-header">
+              <h3>1. Explanation</h3>
+              <div class="ex-buttons">
+                <button class="btn-outline" id="simpleBtn">
+                  <svg viewBox="0 0 24 24" fill="none" style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:5px">
+                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
+                    <path d="M9 10c.3-1.7 3.3-2.3 3.3 0C12.3 12 10 12 10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    <circle cx="10" cy="17" r="1" fill="currentColor"/>
+                  </svg>
+                  Explain simpler
+                </button>
+                <button class="btn-primary" id="detailedBtn">
+                  <svg viewBox="0 0 24 24" fill="none" style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:5px">
+                    <path d="M4 6h16M4 10h16M4 14h10" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+                  </svg>
+                  More detailed
+                </button>
+              </div>
+            </div>
+
+            <div class="ex-body">
+
+              <!-- LEFT: text + steps -->
+              <div class="ex-left">
+                <div class="ex-text" id="lessonText">
+                  <p>AI learns from data using a process called <strong>training</strong>.</p>
+                  <p>Here's how it works:</p>
+
+                  <ul class="steps-list">
+                    <li>
+                      <span class="step-num">1</span>
+                      <div class="step-body">
+                        <strong>Data Collection</strong>
+                        <span>Large amounts of data are collected (text, images, numbers, etc.).</span>
+                      </div>
+                    </li>
+                    <li>
+                      <span class="step-num">2</span>
+                      <div class="step-body">
+                        <strong>Pattern Recognition</strong>
+                        <span>The AI looks for patterns and relationships in the data.</span>
+                      </div>
+                    </li>
+                    <li>
+                      <span class="step-num">3</span>
+                      <div class="step-body">
+                        <strong>Model Building</strong>
+                        <span>The AI builds a model based on those patterns.</span>
+                      </div>
+                    </li>
+                    <li>
+                      <span class="step-num">4</span>
+                      <div class="step-body">
+                        <strong>Prediction</strong>
+                        <span>The model uses what it learned to make predictions on new data.</span>
+                      </div>
+                    </li>
+                  </ul>
+
+                  <p style="margin-top:12px">
+                    The more quality data the AI sees, the better it becomes at making accurate predictions.
+                  </p>
+                </div>
+              </div>
+
+              <!-- RIGHT: flow diagram -->
+              <div class="ex-image" style="margin-top:0; align-items:flex-start; padding-top:8px">
+                <div class="flow-diagram">
+                  <div class="flow-title">How AI Learns</div>
+
+                  <div class="flow-step">
+                    <div class="flow-icon">
+                      <svg viewBox="0 0 24 24" fill="none">
+                        <ellipse cx="12" cy="7" rx="8" ry="4" stroke="currentColor" stroke-width="1.6"/>
+                        <path d="M4 7v5c0 2.2 3.6 4 8 4s8-1.8 8-4V7" stroke="currentColor" stroke-width="1.6"/>
+                        <path d="M4 12v5c0 2.2 3.6 4 8 4s8-1.8 8-4v-5" stroke="currentColor" stroke-width="1.6"/>
+                      </svg>
+                    </div>
+                    <span class="flow-step-label">1. Data Collection</span>
+                  </div>
+
+                  <div class="flow-arrow">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M6 13l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>
+
+                  <div class="flow-step">
+                    <div class="flow-icon">
+                      <svg viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/>
+                        <path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                    <span class="flow-step-label">2. Pattern Recognition</span>
+                  </div>
+
+                  <div class="flow-arrow">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M6 13l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>
+
+                  <div class="flow-step">
+                    <div class="flow-icon">
+                      <svg viewBox="0 0 24 24" fill="none">
+                        <polygon points="12,3 20,8 20,16 12,21 4,16 4,8" stroke="currentColor" stroke-width="1.6" fill="none"/>
+                        <path d="M12 3v18M4 8l8 5 8-5" stroke="currentColor" stroke-width="1.4"/>
+                      </svg>
+                    </div>
+                    <span class="flow-step-label">3. Model Building</span>
+                  </div>
+
+                  <div class="flow-arrow">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M6 13l6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>
+
+                  <div class="flow-step">
+                    <div class="flow-icon">
+                      <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M3 3v18h18M7 15v3M12 9v9M17 5v13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                    <span class="flow-step-label">4. Prediction</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── 2. EXAMPLE ── -->
+        <div class="example-card" style="flex-direction:column; align-items:flex-start; gap:16px">
+
+          <div class="example-text" style="max-width:100%">
+            <h3>2. Example</h3>
+            <p style="font-size:14px;color:#6b7280;margin-bottom:4px"><strong>Example:</strong></p>
+            <p style="font-size:14px;color:#6b7280;line-height:1.6;margin:0">
+              You show a lot of cat pictures to an AI.<br>
+              It learns what a cat looks like.<br>
+              Then when it sees a new picture,<br>
+              it can recognize the cat.
+            </p>
+          </div>
+
+          <!-- flow of 3 images with arrows -->
+          <div class="example-flow">
+
+            <div class="example-flow-item">
+              <div class="example-flow-box">
+                <!-- SVG placeholder grid of cat pictures -->
+                <svg viewBox="0 0 100 80" width="100" height="80">
+                  <rect width="100" height="80" fill="#f0f4ff"/>
+                  <!-- 2x2 grid of mini cat silhouettes -->
+                  <rect x="4" y="4" width="42" height="33" rx="4" fill="#c7d2fe"/>
+                  <rect x="54" y="4" width="42" height="33" rx="4" fill="#c7d2fe"/>
+                  <rect x="4" y="43" width="42" height="33" rx="4" fill="#c7d2fe"/>
+                  <rect x="54" y="43" width="42" height="33" rx="4" fill="#c7d2fe"/>
+                  <!-- simple cat face each -->
+                  <text x="25" y="26" font-size="18" text-anchor="middle">🐱</text>
+                  <text x="75" y="26" font-size="18" text-anchor="middle">🐱</text>
+                  <text x="25" y="65" font-size="18" text-anchor="middle">🐱</text>
+                  <text x="75" y="65" font-size="18" text-anchor="middle">🐱</text>
+                </svg>
+              </div>
+              <span class="example-flow-label">Many cat pictures<br>(input data)</span>
+            </div>
+
+            <div class="flow-arrow-h">→</div>
+
+            <div class="example-flow-item">
+              <div class="example-flow-box dark">
+                <svg viewBox="0 0 100 80" width="100" height="80">
+                  <rect width="100" height="80" fill="#1e1b4b"/>
+                  <!-- neural network nodes -->
+                  <circle cx="18" cy="20" r="5" fill="#6366f1" opacity="0.9"/>
+                  <circle cx="18" cy="40" r="5" fill="#6366f1" opacity="0.9"/>
+                  <circle cx="18" cy="60" r="5" fill="#6366f1" opacity="0.9"/>
+                  <circle cx="50" cy="15" r="5" fill="#818cf8" opacity="0.9"/>
+                  <circle cx="50" cy="35" r="5" fill="#818cf8" opacity="0.9"/>
+                  <circle cx="50" cy="55" r="5" fill="#818cf8" opacity="0.9"/>
+                  <circle cx="50" cy="70" r="5" fill="#818cf8" opacity="0.9"/>
+                  <circle cx="82" cy="30" r="5" fill="#a5b4fc" opacity="0.9"/>
+                  <circle cx="82" cy="55" r="5" fill="#a5b4fc" opacity="0.9"/>
+                  <!-- connections -->
+                  <line x1="23" y1="20" x2="45" y2="15" stroke="#4f46e5" stroke-width="0.8" opacity="0.7"/>
+                  <line x1="23" y1="20" x2="45" y2="35" stroke="#4f46e5" stroke-width="0.8" opacity="0.7"/>
+                  <line x1="23" y1="40" x2="45" y2="35" stroke="#4f46e5" stroke-width="0.8" opacity="0.7"/>
+                  <line x1="23" y1="40" x2="45" y2="55" stroke="#4f46e5" stroke-width="0.8" opacity="0.7"/>
+                  <line x1="23" y1="60" x2="45" y2="55" stroke="#4f46e5" stroke-width="0.8" opacity="0.7"/>
+                  <line x1="23" y1="60" x2="45" y2="70" stroke="#4f46e5" stroke-width="0.8" opacity="0.7"/>
+                  <line x1="55" y1="15" x2="77" y2="30" stroke="#6366f1" stroke-width="0.8" opacity="0.7"/>
+                  <line x1="55" y1="35" x2="77" y2="30" stroke="#6366f1" stroke-width="0.8" opacity="0.7"/>
+                  <line x1="55" y1="55" x2="77" y2="55" stroke="#6366f1" stroke-width="0.8" opacity="0.7"/>
+                  <line x1="55" y1="70" x2="77" y2="55" stroke="#6366f1" stroke-width="0.8" opacity="0.7"/>
+                </svg>
+              </div>
+              <span class="example-flow-label">AI learns patterns</span>
+            </div>
+
+            <div class="flow-arrow-h">→</div>
+
+            <div class="example-flow-item">
+              <div class="example-flow-box">
+                <svg viewBox="0 0 100 80" width="100" height="80">
+                  <rect width="100" height="80" fill="#f0fdf4"/>
+                  <text x="50" y="48" font-size="36" text-anchor="middle">🐱</text>
+                  <!-- green detection box -->
+                  <rect x="10" y="8" width="80" height="64" rx="6" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-dasharray="5,3"/>
+                  <!-- label -->
+                  <rect x="10" y="8" width="32" height="14" rx="3" fill="#22c55e"/>
+                  <text x="26" y="19" font-size="7" fill="white" text-anchor="middle" font-weight="bold">CAT 98%</text>
+                </svg>
+              </div>
+              <span class="example-flow-label">Recognizes a cat<br>(new data)</span>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ── 3. QUICK CHECK ── -->
+        <div class="quiz-card">
+
+          <h3>3. Quick Check</h3>
+          <p class="quiz-question">What is the first step in how AI learns?</p>
+
+          <div class="quiz-inner">
+
+            <!-- OPTIONS -->
+            <div>
+              <div class="option" data-option="A">A) Pattern recognition</div>
+              <div class="option" data-option="B" data-correct="true">B) Data collection</div>
+              <div class="option" data-option="C">C) Making predictions</div>
+              <div class="option" data-option="D">D) Building a model</div>
+
+              <button class="btn-disabled" id="submitBtn" disabled>
+                Submit answer
+              </button>
+              <span id="submitHint" style="font-size:13px;color:#9ca3af;margin-left:12px;vertical-align:middle">
+                Choose the best answer and click Submit.
+              </span>
+            </div>
+
+            <!-- TIP -->
+            <div class="quiz-tip">
+              <div class="quiz-tip-header">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M9.5 9.5c.3-1.5 3-2 3 0C12.5 11 10.5 11 10.5 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  <circle cx="10.5" cy="16" r="1" fill="currentColor"/>
+                </svg>
+                <span>Question tip</span>
+              </div>
+              <p>Think about what happens before AI can look for patterns.</p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ── 4. ASK AI TUTOR ── -->
+        <div class="card ai-card">
+
+          <h3>4. Ask AI Tutor</h3>
+          <p class="ai-sub">Have a question about this lesson? Ask your AI tutor.</p>
+
+          <!-- CHAT -->
+          <div class="chat-box" id="chatBox">
+            <div class="message ai">
+              <div class="avatar ai-avatar">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+                  <circle cx="12" cy="12" r="5" stroke="white" stroke-width="1.6"/>
+                  <path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1
+                           M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"
+                    stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="bubble">
+                Hi! Ask me anything about how AI learns.
+              </div>
+            </div>
+          </div>
+
+          <!-- INPUT -->
+          <div class="chat-input">
+            <input id="chatInput" placeholder="Type your question here..." />
+            <button id="sendBtn" class="btn-primary">Ask</button>
+          </div>
+
+        </div>
+
+        <!-- ── NAV BUTTONS ── -->
+        <div class="lesson-nav">
+          <button class="btn-light" onclick="window.location.href='lesson2.html'">← Previous lesson</button>
+          <button class="btn-primary" onclick="window.location.href='lesson4.html'">Next lesson →</button>
+        </div>
+
+      </div><!-- /lesson left col -->
+
+      <!-- ── RIGHT SIDEBAR ── -->
+      <aside class="lesson-right">
+
+        <!-- COURSE PROGRESS -->
+        <div class="card small">
+          <h4>Course progress</h4>
+
+          <div class="progress-ring">
+            <svg width="120" height="120">
+              <circle cx="60" cy="60" r="50" stroke="#e5e7eb" stroke-width="8" fill="none"/>
+              <circle
+                cx="60" cy="60" r="50"
+                stroke="#4f6ef7" stroke-width="8" fill="none"
+                stroke-linecap="round"
+                id="progressCircle"
+              />
+            </svg>
+            <div class="progress-text">30%</div>
+          </div>
+
+          <p class="progress-sub">3 of 10 lessons completed</p>
+          <a href="progress.html" class="progress-link">View full progress →</a>
+        </div>
+
+        <!-- COURSE CONTENT LIST -->
+        <div class="course-list" id="courseList">
+
+          <!-- Lesson 1 — done -->
+          <div class="course-item done" data-index="1">
+            <span>1. Introduction to AI</span>
+            <div class="icon">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" fill="#22c55e"/>
+                <path d="M7 12l3 3 7-7" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Lesson 2 — done -->
+          <div class="course-item done" data-index="2">
+            <span>2. Types of AI</span>
+            <div class="icon">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" fill="#22c55e"/>
+                <path d="M7 12l3 3 7-7" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Lesson 3 — active (current) -->
+          <div class="course-item active" data-index="3">
+            <span>3. How AI learns</span>
+            <div class="icon">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" fill="#4f6ef7"/>
+                <path d="M10 8l6 4-6 4z" fill="white"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Lessons 4–10 locked -->
+          <div class="course-item locked" data-index="4">
+            <span>4. Structure of a good prompt</span>
+            <div class="icon">
+              <svg viewBox="0 0 24 24">
+                <rect x="5" y="10" width="14" height="10" rx="2" fill="#9ca3af"/>
+                <path d="M8 10V7a4 4 0 018 0v3" stroke="#9ca3af" stroke-width="2" fill="none"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="course-item locked" data-index="5">
+            <span>5. Common mistakes in prompting</span>
+            <div class="icon">
+              <svg viewBox="0 0 24 24">
+                <rect x="5" y="10" width="14" height="10" rx="2" fill="#9ca3af"/>
+                <path d="M8 10V7a4 4 0 018 0v3" stroke="#9ca3af" stroke-width="2" fill="none"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="course-item locked" data-index="6">
+            <span>6. Why AI makes mistakes</span>
+            <div class="icon">
+              <svg viewBox="0 0 24 24">
+                <rect x="5" y="10" width="14" height="10" rx="2" fill="#9ca3af"/>
+                <path d="M8 10V7a4 4 0 018 0v3" stroke="#9ca3af" stroke-width="2" fill="none"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="course-item locked" data-index="7">
+            <span>7. AI in everyday life</span>
+            <div class="icon">
+              <svg viewBox="0 0 24 24">
+                <rect x="5" y="10" width="14" height="10" rx="2" fill="#9ca3af"/>
+                <path d="M8 10V7a4 4 0 018 0v3" stroke="#9ca3af" stroke-width="2" fill="none"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="course-item locked" data-index="8">
+            <span>8. The future of AI</span>
+            <div class="icon">
+              <svg viewBox="0 0 24 24">
+                <rect x="5" y="10" width="14" height="10" rx="2" fill="#9ca3af"/>
+                <path d="M8 10V7a4 4 0 018 0v3" stroke="#9ca3af" stroke-width="2" fill="none"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="course-item locked" data-index="9">
+            <span>9. Final test AI basics</span>
+            <div class="icon">
+              <svg viewBox="0 0 24 24">
+                <rect x="5" y="10" width="14" height="10" rx="2" fill="#9ca3af"/>
+                <path d="M8 10V7a4 4 0 018 0v3" stroke="#9ca3af" stroke-width="2" fill="none"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="course-item locked" data-index="10">
+            <span>10. Course Summary</span>
+            <div class="icon">
+              <svg viewBox="0 0 24 24">
+                <rect x="5" y="10" width="14" height="10" rx="2" fill="#9ca3af"/>
+                <path d="M8 10V7a4 4 0 018 0v3" stroke="#9ca3af" stroke-width="2" fill="none"/>
+              </svg>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- NEED HELP -->
+        <div class="card" style="margin-top:18px; padding:20px">
+          <h4 style="font-size:14px;font-weight:700;color:#111827;margin-bottom:6px">Need help?</h4>
+          <p style="font-size:13px;color:#6b7280;margin-bottom:14px;line-height:1.5">
+            Our AI tutor is always here to help you learn better.
+          </p>
+          <a href="tutor.html" class="btn-primary" style="display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;border-radius:14px;padding:10px 16px;font-size:13px;font-weight:600">
+            <svg viewBox="0 0 24 24" fill="none" style="width:16px;height:16px">
+              <circle cx="12" cy="12" r="5" stroke="white" stroke-width="1.6"/>
+              <path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+            Go to AI Tutor
+          </a>
+        </div>
+
+      </aside>
+
+    </div><!-- /lesson-layout -->
+
+  </main>
+
+</div>
+
+<!-- ── SCRIPTS ── -->
+
+<!-- Progress ring -->
+<script>
+  const circle   = document.getElementById('progressCircle');
+  const radius   = 50;
+  const progress = 30;
+  const circ     = 2 * Math.PI * radius;
+  circle.style.strokeDasharray  = circ;
+  circle.style.strokeDashoffset = circ - (progress / 100) * circ;
+  // start from top
+  circle.style.transform        = 'rotate(-90deg)';
+  circle.style.transformOrigin  = '60px 60px';
+</script>
+
+<!-- Quiz logic -->
+<script>
+  const options   = document.querySelectorAll('.option');
+  const submitBtn = document.getElementById('submitBtn');
+  const submitHint = document.getElementById('submitHint');
+  let selected = null;
+
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      options.forEach(o => o.classList.remove('active'));
+      option.classList.add('active');
+      selected = option;
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('btn-disabled');
+      submitBtn.classList.add('btn-primary');
+      submitHint.style.display = 'none';
+    });
+  });
+
+  submitBtn.addEventListener('click', () => {
+    if (!selected) return;
+
+    const isCorrect = selected.dataset.correct === 'true';
+    options.forEach(o => o.classList.remove('correct', 'wrong'));
+
+    if (isCorrect) {
+      selected.classList.add('correct');
+    } else {
+      selected.classList.add('wrong');
+      options.forEach(o => {
+        if (o.dataset.correct === 'true') o.classList.add('correct');
+      });
+    }
+
+    options.forEach(o => o.style.pointerEvents = 'none');
+    submitBtn.style.pointerEvents = 'none';
+  });
+</script>
+
+<!-- Chat logic -->
+<script>
+  const chatBox = document.getElementById('chatBox');
+  const input   = document.getElementById('chatInput');
+  const btn     = document.getElementById('sendBtn');
+
+  function addMessage(text, type) {
+    const msg = document.createElement('div');
+    msg.classList.add('message', type);
+    msg.innerHTML = `
+      ${type === 'ai' ? `
+        <div class="avatar ai-avatar">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+            <circle cx="12" cy="12" r="5" stroke="white" stroke-width="1.6"/>
+            <path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1
+                     M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"
+              stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>` : ''}
+      <div class="bubble">${text}</div>
+    `;
+    chatBox.appendChild(msg);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+
+  async function sendMessage() {
+    const text = input.value.trim();
+    if (!text) return;
+
+    addMessage(text, 'user');
+    input.value = '';
+
+    const typing = document.createElement('div');
+    typing.classList.add('message', 'ai');
+    typing.innerHTML = `<div class="bubble">Typing...</div>`;
+    chatBox.appendChild(typing);
+
+    try {
+      const res = await fetch('http://localhost:3000/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text, mode: 'lesson', lesson: 3 })
+      });
+      const data = await res.json();
+      typing.remove();
+      addMessage(data.reply, 'ai');
+    } catch (err) {
+      typing.innerHTML = `<div class="bubble">AI error 😢</div>`;
+    }
+  }
+
+  btn.addEventListener('click', sendMessage);
+  input.addEventListener('keypress', e => { if (e.key === 'Enter') sendMessage(); });
+</script>
+
+<!-- Course list interaction -->
+<script>
+  const items = document.querySelectorAll('.course-item');
+
+  items.forEach((item, index) => {
+    item.addEventListener('click', () => {
+      if (item.classList.contains('locked')) return;
+
+      item.classList.remove('active');
+      item.classList.add('done');
+      item.querySelector('.icon').innerHTML = `
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" fill="#22c55e"/>
+          <path d="M7 12l3 3 7-7" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </svg>`;
+
+      const next = items[index + 1];
+      if (next && next.classList.contains('locked')) {
+        next.classList.remove('locked');
+        next.classList.add('active');
+        next.querySelector('.icon').innerHTML = `
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" fill="#4f6ef7"/>
+            <path d="M10 8l6 4-6 4z" fill="white"/>
+          </svg>`;
+      }
+    });
+  });
+</script>
+
+<!-- Explain simpler / More detailed -->
+<script>
+  const lessonText  = document.getElementById('lessonText');
+  const simpleBtn   = document.getElementById('simpleBtn');
+  const detailedBtn = document.getElementById('detailedBtn');
+
+  const simpleVersion = `
+    <p>AI learns like a student studying for a test.</p>
+    <p>First it sees lots of examples (data).</p>
+    <p>Then it finds patterns in those examples.</p>
+    <p>Finally it uses those patterns to answer new questions.</p>
+  `;
+
+  const detailedVersion = `
+    <p>AI learning — technically called <strong>machine learning</strong> — is a multi-step process in which a model iteratively improves its performance on a task by processing training data.</p>
+    <ul class="steps-list" style="margin-top:12px">
+      <li><span class="step-num">1</span><div class="step-body"><strong>Data Collection</strong><span>Raw data (images, text, numbers) is gathered and cleaned to remove errors and inconsistencies.</span></div></li>
+      <li><span class="step-num">2</span><div class="step-body"><strong>Feature Extraction & Pattern Recognition</strong><span>Algorithms identify statistical relationships and features within the dataset using techniques like gradient descent.</span></div></li>
+      <li><span class="step-num">3</span><div class="step-body"><strong>Model Training</strong><span>A mathematical model (e.g., a neural network) is adjusted across thousands of iterations to minimise prediction error.</span></div></li>
+      <li><span class="step-num">4</span><div class="step-body"><strong>Inference / Prediction</strong><span>The trained model is deployed and makes predictions on unseen data based on learned weights and parameters.</span></div></li>
+    </ul>
+    <p style="margin-top:12px">Data quality and quantity are the most critical factors in how accurate the final model will be.</p>
+  `;
+
+  simpleBtn.addEventListener('click', () => { lessonText.innerHTML = simpleVersion; });
+  detailedBtn.addEventListener('click', () => { lessonText.innerHTML = detailedVersion; });
+</script>
+
+</body>
+</html>

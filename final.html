@@ -1,0 +1,1788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Final Test — SmartLearn AI</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ─── RESET & BASE ─────────────────────────── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f6f8ff;
+  color: #0f172a;
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* ─── LAYOUT ──────────────────────────────── */
+.layout { display: flex; min-height: 100vh; }
+
+/* ─── SIDEBAR ─────────────────────────────── */
+.sidebar {
+  width: 240px;
+  min-width: 240px;
+  background: #fff;
+  border-right: 1px solid #e5e7eb;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  font-weight: 600;
+  font-size: 15px;
+  color: #0f172a;
+}
+
+.sidebar-logo img { width: 50px; height: 50px; object-fit: contain; }
+
+.sidebar-nav { display: flex; flex-direction: column; gap: 2px; }
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  color: #6b7280;
+  transition: all 0.2s ease;
+}
+
+.sidebar-nav a .icon { width: 22px; height: 22px; flex-shrink: 0; }
+.sidebar-nav a .icon svg { width: 22px; height: 22px; display: block; }
+
+.sidebar-nav a:hover { background: #f5f7ff; color: #4f6ef7; }
+.sidebar-nav a.active { background: #eef2ff; color: #4f6ef7; font-weight: 600; }
+
+/* Sidebar upgrade card */
+.sidebar-upgrade {
+  margin-top: auto;
+  background: linear-gradient(135deg, #4f6ef7, #6366f1);
+  border-radius: 16px;
+  padding: 18px;
+  color: white;
+}
+
+.sidebar-upgrade h4 {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sidebar-upgrade p {
+  font-size: 12px;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.btn-upgrade {
+  width: 100%;
+  padding: 9px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.15);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+}
+
+.btn-upgrade:hover { background: rgba(255,255,255,0.28); }
+
+/* ─── MAIN ────────────────────────────────── */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ─── TOPBAR ──────────────────────────────── */
+.topbar {
+  height: 64px;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  flex-shrink: 0;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.topbar-left strong { color: #111827; font-weight: 600; }
+.divider { color: #d1d5db; }
+
+.topbar-right { display: flex; align-items: center; gap: 12px; }
+
+.icon-btn {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: #6b7280;
+  transition: 0.2s;
+}
+
+.icon-btn svg { width: 18px; height: 18px; display: block; }
+.icon-btn:hover { background: #f5f7ff; color: #4f6ef7; }
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: #4f6ef7;
+  color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.arrow { width: 14px; height: 14px; color: #6b7280; }
+
+/* ─── CONTENT AREA ────────────────────────── */
+.content {
+  padding: 28px 32px;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* ─── LEFT COLUMN ─────────────────────────── */
+.test-left { display: flex; flex-direction: column; gap: 20px; }
+
+/* ─── TEST HEADER CARD ────────────────────── */
+.test-header-card {
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid #eef2ff;
+  padding: 24px 28px;
+  box-shadow: 0 4px 20px rgba(79,110,247,0.05);
+}
+
+.test-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4f6ef7;
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+
+.test-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 6px;
+}
+
+.test-title-row h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Timer */
+.timer-block {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.timer-label { font-size: 13px; color: #6b7280; font-weight: 500; }
+
+.timer-display {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: #eef2ff;
+  border: 1.5px solid #c7d2fe;
+  border-radius: 10px;
+  padding: 7px 14px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #4f6ef7;
+  font-variant-numeric: tabular-nums;
+  min-width: 90px;
+  justify-content: center;
+}
+
+.timer-display svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+.timer-display.warning {
+  background: #fef2f2;
+  border-color: #fca5a5;
+  color: #ef4444;
+}
+
+.test-meta {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 18px;
+}
+
+/* Progress bar */
+.test-progress-wrap { margin-bottom: 4px; }
+
+.test-progress-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 7px;
+  font-weight: 500;
+}
+
+.test-progress-top strong { color: #0f172a; }
+
+.test-progress-bar {
+  height: 7px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.test-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4f6ef7, #6a7efc);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+/* ─── QUESTION CARD ───────────────────────── */
+.question-card {
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid #eef2ff;
+  padding: 28px;
+  box-shadow: 0 4px 20px rgba(79,110,247,0.05);
+}
+
+.question-number {
+  font-size: 12px;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+}
+
+.question-text {
+  font-size: 17px;
+  font-weight: 600;
+  color: #0f172a;
+  line-height: 1.5;
+  margin-bottom: 22px;
+}
+
+/* Options */
+.options-list { display: flex; flex-direction: column; gap: 10px; }
+
+.option-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 18px;
+  border-radius: 14px;
+  border: 1.5px solid #e5e7eb;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.option-item:hover {
+  border-color: #4f6ef7;
+  background: #f5f7ff;
+}
+
+.option-item.selected {
+  border: 2px solid #4f6ef7;
+  background: #eef2ff;
+}
+
+.option-item.correct {
+  border: 2px solid #22c55e;
+  background: #f0fdf4;
+  pointer-events: none;
+}
+
+.option-item.wrong {
+  border: 2px solid #ef4444;
+  background: #fef2f2;
+  pointer-events: none;
+}
+
+.option-item.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.option-radio {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: 2px solid #d1d5db;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.option-item.selected .option-radio {
+  border-color: #4f6ef7;
+  background: #4f6ef7;
+}
+
+.option-item.selected .option-radio::after {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+
+.option-item.correct .option-radio {
+  border-color: #22c55e;
+  background: #22c55e;
+}
+
+.option-item.correct .option-radio::after {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+
+.option-item.wrong .option-radio {
+  border-color: #ef4444;
+  background: #ef4444;
+}
+
+.option-item.wrong .option-radio::after {
+  content: '✕';
+  font-size: 10px;
+  color: white;
+  font-weight: 700;
+}
+
+.option-letter {
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  background: #f3f4f6;
+  color: #6b7280;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.option-item.selected .option-letter {
+  background: #c7d2fe;
+  color: #4f6ef7;
+}
+
+.option-item.correct .option-letter { background: #bbf7d0; color: #16a34a; }
+.option-item.wrong   .option-letter { background: #fecaca; color: #dc2626; }
+
+.option-text {
+  font-size: 14px;
+  color: #374151;
+  flex: 1;
+  line-height: 1.45;
+}
+
+.option-item.selected .option-text { color: #1e293b; font-weight: 500; }
+.option-item.correct  .option-text { color: #166534; font-weight: 500; }
+.option-item.wrong    .option-text { color: #991b1b; }
+
+/* Feedback pill after answer */
+.feedback-pill {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 14px;
+}
+
+.feedback-pill.show { display: flex; }
+
+.feedback-pill.correct-fb {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+}
+
+.feedback-pill.wrong-fb {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}
+
+.feedback-pill svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+/* ─── HINT CARD ───────────────────────────── */
+.hint-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  background: #f8faff;
+  border: 1px solid #e0e7ff;
+  border-radius: 14px;
+  margin-top: 16px;
+}
+
+.hint-card svg { width: 20px; height: 20px; color: #4f6ef7; flex-shrink: 0; margin-top: 1px; }
+
+.hint-content strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4f6ef7;
+  margin-bottom: 3px;
+}
+
+.hint-content p {
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Next question button */
+.btn-next-q {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 24px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg, #4f6ef7, #6a7efc);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(79,110,247,0.28);
+  transition: all 0.2s;
+  margin-top: 20px;
+}
+
+.btn-next-q:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(79,110,247,0.38); }
+.btn-next-q svg { width: 16px; height: 16px; }
+
+/* ─── AI TUTOR CARD ───────────────────────── */
+.ai-tutor-card {
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid #eef2ff;
+  padding: 22px 24px;
+  box-shadow: 0 4px 20px rgba(79,110,247,0.05);
+}
+
+.ai-tutor-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.ai-tutor-avatar {
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #4f6ef7, #6366f1);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 12px rgba(79,110,247,0.3);
+  flex-shrink: 0;
+}
+
+.ai-tutor-avatar svg { width: 20px; height: 20px; }
+
+.ai-tutor-header strong { font-size: 15px; font-weight: 700; color: #0f172a; }
+
+.ai-tutor-sub {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 16px;
+  margin-top: 2px;
+}
+
+.ai-tutor-sub span { color: #9ca3af; font-size: 12px; }
+
+.ai-tutor-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.btn-tutor-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: 1.5px solid #e5e7eb;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+}
+
+.btn-tutor-action svg { width: 16px; height: 16px; color: #4f6ef7; }
+
+.btn-tutor-action:hover {
+  border-color: #c7d2fe;
+  color: #4f6ef7;
+  background: #f5f7ff;
+}
+
+/* Chat section inside tutor */
+.ai-chat-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 16px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.2s;
+}
+
+.ai-chat-toggle:hover { border-color: #c7d2fe; background: #f0f4ff; }
+
+.ai-chat-toggle span { font-size: 13px; font-weight: 500; color: #374151; display: flex; align-items: center; gap: 8px; }
+.ai-chat-toggle span svg { width: 16px; height: 16px; color: #4f6ef7; }
+
+.ai-chat-box {
+  display: none;
+  margin-top: 12px;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ai-chat-box.open { display: flex; }
+
+.chat-messages {
+  max-height: 180px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-right: 4px;
+}
+
+.chat-msg {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.chat-msg.user { flex-direction: row-reverse; }
+
+.chat-msg-avatar {
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #4f6ef7, #6366f1);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.chat-msg-avatar.user-av {
+  background: #e0e7ff;
+  color: #4f6ef7;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.chat-msg-avatar svg { width: 14px; height: 14px; }
+
+.chat-bubble {
+  padding: 9px 13px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  max-width: 75%;
+}
+
+.chat-bubble.ai-b { background: #f5f7ff; color: #374151; border-radius: 4px 12px 12px 12px; }
+.chat-bubble.user-b { background: linear-gradient(135deg, #4f6ef7, #6a7efc); color: white; border-radius: 12px 4px 12px 12px; }
+
+.chat-input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.chat-input-row input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.5px solid #e5e7eb;
+  font-size: 13px;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  color: #0f172a;
+  transition: 0.2s;
+}
+
+.chat-input-row input:focus { border-color: #4f6ef7; box-shadow: 0 0 0 3px rgba(79,110,247,0.1); }
+
+.btn-chat-send {
+  width: 36px; height: 36px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #4f6ef7, #6a7efc);
+  color: white;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s;
+  box-shadow: 0 3px 10px rgba(79,110,247,0.3);
+}
+
+.btn-chat-send:hover { transform: scale(1.05); }
+.btn-chat-send svg { width: 15px; height: 15px; }
+
+/* ─── NAV BUTTONS ─────────────────────────── */
+.test-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.btn-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 24px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-nav.prev {
+  border: 1.5px solid #e5e7eb;
+  background: #fff;
+  color: #374151;
+}
+
+.btn-nav.prev:hover { border-color: #c7d2fe; color: #4f6ef7; background: #f5f7ff; }
+
+.btn-nav.next {
+  border: none;
+  background: linear-gradient(135deg, #4f6ef7, #6a7efc);
+  color: white;
+  box-shadow: 0 6px 18px rgba(79,110,247,0.28);
+  flex: 1;
+  justify-content: center;
+}
+
+.btn-nav.next:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(79,110,247,0.38); }
+.btn-nav.next:disabled { opacity: 0.45; transform: none; cursor: not-allowed; }
+.btn-nav svg { width: 16px; height: 16px; }
+
+/* ─── RIGHT COLUMN ────────────────────────── */
+.test-right { display: flex; flex-direction: column; gap: 18px; position: sticky; top: 88px; }
+
+/* Test progress card */
+.progress-card {
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid #eef2ff;
+  padding: 22px 24px;
+  box-shadow: 0 4px 20px rgba(79,110,247,0.05);
+}
+
+.progress-card h3 { font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 16px; }
+
+/* Ring */
+.ring-wrap {
+  position: relative;
+  width: 110px; height: 110px;
+  margin: 0 auto 14px;
+}
+
+.ring-wrap svg { transform: rotate(-90deg); }
+
+.ring-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring-center strong { font-size: 22px; font-weight: 700; color: #0f172a; line-height: 1; }
+.ring-center span { font-size: 12px; color: #9ca3af; margin-top: 2px; }
+
+.ring-sub { text-align: center; font-size: 13px; color: #6b7280; margin-bottom: 14px; }
+
+.score-row {
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
+  border-top: 1px solid #f1f5f9;
+}
+
+.score-item { text-align: center; }
+
+.score-item .score-val {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.score-item .score-label { font-size: 11px; color: #9ca3af; }
+
+/* Question navigation grid */
+.questions-card {
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid #eef2ff;
+  padding: 22px 24px;
+  box-shadow: 0 4px 20px rgba(79,110,247,0.05);
+}
+
+.questions-card h3 { font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 14px; }
+
+.q-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 7px;
+  margin-bottom: 16px;
+}
+
+.q-btn {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 9px;
+  border: 1.5px solid #e5e7eb;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  flex-direction: column;
+  transition: all 0.18s;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+}
+
+.q-btn:hover { border-color: #c7d2fe; color: #4f6ef7; background: #f5f7ff; }
+
+.q-btn.current {
+  border: 2px solid #4f6ef7;
+  background: #eef2ff;
+  color: #4f6ef7;
+}
+
+.q-btn.answered-correct {
+  border-color: #22c55e;
+  background: #f0fdf4;
+  color: #16a34a;
+}
+
+.q-btn.answered-wrong {
+  border-color: #ef4444;
+  background: #fef2f2;
+  color: #ef4444;
+}
+
+.q-btn .q-icon {
+  font-size: 10px;
+  line-height: 1;
+}
+
+/* Legend */
+.q-legend { display: flex; flex-direction: column; gap: 6px; }
+
+.q-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.legend-dot {
+  width: 18px; height: 18px;
+  border-radius: 5px;
+  border: 1.5px solid;
+  flex-shrink: 0;
+}
+
+.legend-dot.correct-d { border-color: #22c55e; background: #f0fdf4; }
+.legend-dot.wrong-d   { border-color: #ef4444; background: #fef2f2; }
+.legend-dot.empty-d   { border-color: #e5e7eb; background: #fff; }
+.legend-dot.current-d { border-color: #4f6ef7; background: #eef2ff; }
+
+/* Need help card */
+.help-card {
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid #eef2ff;
+  padding: 20px 24px;
+  box-shadow: 0 4px 20px rgba(79,110,247,0.05);
+}
+
+.help-card h3 { font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 6px; }
+
+.help-card p { font-size: 13px; color: #6b7280; line-height: 1.5; margin-bottom: 14px; }
+
+.btn-go-tutor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 11px;
+  border-radius: 12px;
+  border: 1.5px solid #e5e7eb;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+}
+
+.btn-go-tutor svg { width: 18px; height: 18px; color: #4f6ef7; }
+.btn-go-tutor:hover { border-color: #c7d2fe; color: #4f6ef7; background: #f5f7ff; }
+
+/* ─── RESULT SCREEN ───────────────────────── */
+.result-screen {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+  text-align: center;
+  grid-column: 1 / -1;
+}
+
+.result-screen.show { display: flex; }
+
+.result-icon { font-size: 72px; margin-bottom: 20px; }
+
+.result-title { font-size: 28px; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
+.result-sub { font-size: 16px; color: #6b7280; margin-bottom: 32px; }
+
+.result-stats {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+
+.result-stat {
+  background: #fff;
+  border-radius: 18px;
+  border: 1px solid #eef2ff;
+  padding: 20px 28px;
+  min-width: 130px;
+  box-shadow: 0 4px 16px rgba(79,110,247,0.06);
+}
+
+.result-stat .val { font-size: 30px; font-weight: 700; color: #0f172a; margin-bottom: 4px; }
+.result-stat .lbl { font-size: 13px; color: #9ca3af; }
+
+.result-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+.btn-result-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg, #4f6ef7, #6a7efc);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(79,110,247,0.28);
+  transition: all 0.2s;
+}
+
+.btn-result-primary:hover { transform: translateY(-1px); }
+
+.btn-result-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  border-radius: 14px;
+  border: 1.5px solid #e5e7eb;
+  background: #fff;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-result-ghost:hover { border-color: #c7d2fe; color: #4f6ef7; }
+
+/* score color helpers */
+.green { color: #22c55e; }
+.red   { color: #ef4444; }
+
+/* ─── SCROLLBAR ───────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 999px; }
+</style>
+</head>
+
+<body>
+<div class="layout">
+
+  <!-- ── SIDEBAR ─────────────────────────── -->
+  <aside class="sidebar">
+
+    <div class="sidebar-logo">
+      <img src="assets/logo.png" alt="SmartLearn AI">
+      <span>SmartLearn AI</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="dashboard.html">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 10.5L12 3l9 7.5V21h-6v-6H9v6H3z" stroke="currentColor" stroke-width="1.8"/></svg></span>
+        Dashboard
+      </a>
+      <a class="active" href="mycourses.html">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V5a2 2 0 0 1 2-2h12v16a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2Z" stroke="currentColor" stroke-width="1.8"/></svg></span>
+        My Courses
+      </a>
+      <a href="progress.html">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 3v18h18M7 15v3M12 9v9M17 5v13" stroke="currentColor" stroke-width="1.8"/></svg></span>
+        Progress
+      </a>
+      <a href="tutor.html">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M4 20c1.8-3.5 5-5 8-5s6.2 1.5 8 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+        AI Tutor
+      </a>
+      <a href="certificate.html">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/></svg></span>
+        Certificates
+      </a>
+      <a href="claude.html">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M19 12h2M3 12h2M12 3v2M12 19v2" stroke="currentColor" stroke-width="1.8"/></svg></span>
+        Settings
+      </a>
+    </nav>
+
+    <!-- Upgrade card -->
+    <div class="sidebar-upgrade" style="margin-top:32px">
+      <h4>⭐ Upgrade to Premium</h4>
+      <p>Unlock unlimited AI tutor chat, quizzes, and advanced features.</p>
+      <button class="btn-upgrade">Upgrade now</button>
+    </div>
+
+  </aside>
+
+  <!-- ── MAIN ──────────────────────────────── -->
+  <main class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <span>Dashboard</span>
+        <span class="divider">›</span>
+        <span>AI Basics</span>
+        <span class="divider">›</span>
+        <strong>Final Test</strong>
+      </div>
+      <div class="topbar-right">
+        <button class="icon-btn">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <button class="icon-btn">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M18 8a6 6 0 10-12 0c0 7-3 7-3 7h18s-3 0-3-7Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" stroke-width="1.8"/></svg>
+        </button>
+        <div class="user">
+          <div class="avatar">S</div>
+          <span>Serik Islam</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT GRID -->
+    <div class="content" id="mainContent">
+
+      <!-- ══ LEFT COLUMN ══ -->
+      <div class="test-left">
+
+        <!-- Test header -->
+        <div class="test-header-card">
+          <div class="test-label">Final Test</div>
+          <div class="test-title-row">
+            <h1>AI Basics Final Test 🏆</h1>
+            <div class="timer-block">
+              <span class="timer-label">Time left</span>
+              <div class="timer-display" id="timerDisplay">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                <span id="timerText">30:00</span>
+              </div>
+            </div>
+          </div>
+          <div class="test-meta">Answer all questions. You need <strong>70%</strong> or higher to pass. &nbsp;·&nbsp; <strong id="totalQLabel">15 questions</strong></div>
+
+          <div class="test-progress-wrap">
+            <div class="test-progress-top">
+              <span>Question <strong id="qCurrent">1</strong> of <strong>15</strong></span>
+              <span id="progressPct">0%</span>
+            </div>
+            <div class="test-progress-bar">
+              <div class="test-progress-fill" id="progressFill" style="width:0%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question card -->
+        <div class="question-card" id="questionCard">
+          <div class="question-number" id="questionNumber">Question 1 of 15</div>
+          <div class="question-text" id="questionText">Loading…</div>
+
+          <div class="options-list" id="optionsList"></div>
+
+          <!-- Feedback after answer -->
+          <div class="feedback-pill" id="feedbackPill">
+            <svg id="feedbackIcon" viewBox="0 0 24 24" fill="none"></svg>
+            <span id="feedbackText"></span>
+          </div>
+
+          <!-- Hint -->
+          <div class="hint-card" id="hintCard" style="display:none">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9.663 17h4.673M12 3v1M6.3 6.3l.7.7M4 12H3M6.3 17.7l.7-.7M17.7 6.3l-.7.7M20 12h1M17.7 17.7l-.7-.7M12 20.5v.5M16 12a4 4 0 11-8 0 4 4 0 018 0z" stroke="#4f6ef7" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <div class="hint-content">
+              <strong>Need a hint?</strong>
+              <p id="hintText"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Tutor card -->
+        <div class="ai-tutor-card">
+          <div class="ai-tutor-header">
+            <div class="ai-tutor-avatar">
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" stroke="white" stroke-width="1.6"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <strong>AI Tutor</strong>
+          </div>
+          <div class="ai-tutor-sub">Need help with this question?<br><span>I can explain this topic or give you a hint!</span></div>
+
+          <div class="ai-tutor-actions">
+            <button class="btn-tutor-action" onclick="explainTopic()">
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M4 20c1.8-3.5 5-5 8-5s6.2 1.5 8 5" stroke="currentColor" stroke-width="1.8"/></svg>
+              Explain this topic
+            </button>
+            <button class="btn-tutor-action" onclick="giveHint()">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M9.663 17h4.673M12 3v1M6.3 6.3l.7.7M4 12H3M6.3 17.7l.7-.7M17.7 6.3l-.7.7M20 12h1M17.7 17.7l-.7-.7M12 20.5v.5M16 12a4 4 0 11-8 0 4 4 0 018 0z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              Give me a hint
+            </button>
+          </div>
+
+          <!-- Collapsible chat -->
+          <div class="ai-chat-toggle" onclick="toggleChat()">
+            <span>
+              <svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              Chat with AI Tutor
+            </span>
+            <svg id="chatChevron" viewBox="0 0 24 24" fill="none" style="width:16px;height:16px;color:#9ca3af;transition:0.2s"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+
+          <div class="ai-chat-box" id="chatBox">
+            <div class="chat-messages" id="chatMessages">
+              <div class="chat-msg">
+                <div class="chat-msg-avatar">
+                  <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" stroke="white" stroke-width="1.6"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
+                </div>
+                <div class="chat-bubble ai-b">Hi Serik! Ask me anything about this question.</div>
+              </div>
+            </div>
+            <div class="chat-input-row">
+              <input id="chatInput" type="text" placeholder="Ask about this question…" onkeydown="if(event.key==='Enter')sendChat()"/>
+              <button class="btn-chat-send" onclick="sendChat()">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nav buttons -->
+        <div class="test-nav">
+          <button class="btn-nav prev" id="btnPrev" onclick="goTo(currentQ - 1)">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Previous question
+          </button>
+          <button class="btn-nav next" id="btnNext" onclick="handleNext()">
+            Next question
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+
+      </div><!-- /test-left -->
+
+      <!-- ══ RIGHT COLUMN ══ -->
+      <div class="test-right">
+
+        <!-- Progress ring -->
+        <div class="progress-card">
+          <h3>Test progress</h3>
+
+          <div class="ring-wrap">
+            <svg width="110" height="110" viewBox="0 0 110 110">
+              <circle cx="55" cy="55" r="46" stroke="#e5e7eb" stroke-width="8" fill="none"/>
+              <circle cx="55" cy="55" r="46"
+                stroke="#4f6ef7" stroke-width="8" fill="none"
+                stroke-linecap="round"
+                stroke-dasharray="289"
+                stroke-dashoffset="289"
+                id="ringCircle"/>
+            </svg>
+            <div class="ring-center">
+              <strong id="ringPct">0%</strong>
+              <span>answered</span>
+            </div>
+          </div>
+
+          <div class="ring-sub" id="ringSub">0 of 15 questions answered</div>
+
+          <div class="score-row">
+            <div class="score-item">
+              <div class="score-val green">
+                <svg viewBox="0 0 24 24" fill="none" style="width:15px;height:15px"><circle cx="12" cy="12" r="9" stroke="#22c55e" stroke-width="2"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span id="correctCount">0</span> correct
+              </div>
+              <div class="score-label">Correct</div>
+            </div>
+            <div class="score-item">
+              <div class="score-val red">
+                <svg viewBox="0 0 24 24" fill="none" style="width:15px;height:15px"><circle cx="12" cy="12" r="9" stroke="#ef4444" stroke-width="2"/><path d="M15 9l-6 6M9 9l6 6" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/></svg>
+                <span id="wrongCount">0</span> incorrect
+              </div>
+              <div class="score-label">Incorrect</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question grid -->
+        <div class="questions-card">
+          <h3>Questions</h3>
+          <div class="q-grid" id="qGrid"></div>
+          <div class="q-legend">
+            <div class="q-legend-item"><div class="legend-dot correct-d"></div> Correct</div>
+            <div class="q-legend-item"><div class="legend-dot wrong-d"></div> Incorrect</div>
+            <div class="q-legend-item"><div class="legend-dot empty-d"></div> Not answered</div>
+            <div class="q-legend-item"><div class="legend-dot current-d"></div> Current question</div>
+          </div>
+        </div>
+
+        <!-- Need help -->
+        <div class="help-card">
+          <h3>Need help?</h3>
+          <p>Our AI tutor is always here to help you understand better.</p>
+          <button class="btn-go-tutor" onclick="window.location.href='tutor.html'">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.6"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            Go to AI Tutor
+          </button>
+        </div>
+
+      </div><!-- /test-right -->
+
+      <!-- ══ RESULT SCREEN ══ -->
+      <div class="result-screen" id="resultScreen"></div>
+
+    </div><!-- /content -->
+
+  </main>
+</div>
+
+<!-- ═══════════════════════════════ SCRIPT ═══════════════════════════════ -->
+<script>
+/* ── QUESTIONS DATA ────────────────────────────────────── */
+const QUESTIONS = [
+  {
+    q: "What does AI stand for?",
+    options: ["Automatic Intelligence","Artificial Intelligence","Advanced Internet","Applied Information"],
+    correct: 1,
+    hint: "Think about what 'artificial' means — something made by humans, not nature.",
+    topic: "AI stands for Artificial Intelligence — the simulation of human intelligence in machines programmed to think and learn."
+  },
+  {
+    q: "Which of the following is an example of AI in everyday life?",
+    options: ["Traditional alarm clock","AI-powered recommendation on YouTube","Printed book","Manual typewriter"],
+    correct: 1,
+    hint: "AI is used in many apps and services you use every day.",
+    topic: "YouTube's recommendation system uses machine learning to suggest videos based on your watch history and preferences."
+  },
+  {
+    q: "What is Narrow AI?",
+    options: ["AI that can do any intellectual task","AI designed for a specific task","AI with human-level consciousness","AI that replaces all humans"],
+    correct: 1,
+    hint: "Siri, Google Assistant, and spam filters are examples of this type.",
+    topic: "Narrow AI (Weak AI) is designed to perform one specific task very well, unlike General AI which doesn't exist yet."
+  },
+  {
+    q: "Does General AI exist today?",
+    options: ["Yes, many systems have it","Yes, only in supercomputers","No, it does not exist yet","Yes, smartphones use it"],
+    correct: 2,
+    hint: "General AI would require human-level reasoning across all domains.",
+    topic: "General AI (Strong AI) does not exist yet. It's a long-term research goal — current AI systems are all narrow."
+  },
+  {
+    q: "What is the first step in how AI learns?",
+    options: ["Pattern recognition","Data collection","Building a model","Making predictions"],
+    correct: 1,
+    hint: "Before AI can find patterns, it needs raw material to work with.",
+    topic: "Data collection is the first step. AI needs large amounts of data (text, images, numbers) before it can learn anything."
+  },
+  {
+    q: "Which part of a good prompt tells the AI what format to use?",
+    options: ["Role","Task","Context","Format"],
+    correct: 3,
+    hint: "This part specifies bullet points, JSON, table, or word count.",
+    topic: "The Format part of a prompt tells the AI how to structure its output — e.g., 'respond in bullet points' or 'give 3 examples'."
+  },
+  {
+    q: "Which prompt is MOST likely to give a better answer?",
+    options: ["Tell me about planets.","Explain the planets.","Explain the planets in our solar system in simple terms for a 12-year-old student.","Planets?"],
+    correct: 2,
+    hint: "The best prompt includes role, task, context, and format.",
+    topic: "A specific, contextual prompt with audience information always gets better AI responses than vague or one-word prompts."
+  },
+  {
+    q: "Why might AI give an incorrect answer?",
+    options: ["Because it gets tired","Because it has limited knowledge","Because it doesn't have a computer","Because it always guesses randomly"],
+    correct: 1,
+    hint: "AI is trained on data up to a certain date and cannot know recent events.",
+    topic: "AI has a training cutoff date, may learn from incorrect data, and doesn't truly 'understand' — it predicts statistically likely answers."
+  },
+  {
+    q: "Which app uses AI to recommend songs based on your listening habits?",
+    options: ["A traditional radio","Spotify","A CD player","Printed music sheets"],
+    correct: 1,
+    hint: "This green music streaming app creates personalized playlists for you.",
+    topic: "Spotify uses machine learning to analyze your listening history and recommend music through features like Discover Weekly."
+  },
+  {
+    q: "What does machine learning allow AI to do?",
+    options: ["Only follow hard-coded rules","Learn from data and improve over time","Play chess only","Replace all human jobs"],
+    correct: 1,
+    hint: "The key word is 'learn' — improving with more exposure to data.",
+    topic: "Machine learning allows AI systems to automatically improve their performance by processing data, without being explicitly programmed for every scenario."
+  },
+  {
+    q: "What is an example of AI making a mistake?",
+    options: ["A calculator computing 2+2","AI recognizing an old photo as a new event","A book storing information","A clock showing time"],
+    correct: 1,
+    hint: "AI has a knowledge cutoff — it doesn't know what happened after training.",
+    topic: "AI can make mistakes when its training data is outdated. It might present historical information as if it's current, not knowing about recent changes."
+  },
+  {
+    q: "Which of these best describes how AI learns from data?",
+    options: ["It reads textbooks like a student","It finds patterns across large datasets","It asks humans for answers","It uses the internet in real time"],
+    correct: 1,
+    hint: "Think about the steps: collect data → find patterns → build model → predict.",
+    topic: "AI learns by identifying statistical patterns across massive datasets during a training process, then uses those patterns to make predictions on new data."
+  },
+  {
+    q: "What is the purpose of the 'Role' in a prompt structure?",
+    options: ["Specify the output format","Provide background context","Tell AI who it should act as","Describe the task to perform"],
+    correct: 2,
+    hint: "Example: 'You are a teacher' or 'Act as a software engineer'.",
+    topic: "The Role part activates domain-specific knowledge in the AI. Saying 'You are a doctor' shifts its language, tone, and the depth of medical information it provides."
+  },
+  {
+    q: "In the future, AI is expected to:",
+    options: ["Replace all human creativity","Only work in factories","Help solve big problems like healthcare and climate","Become self-aware by 2025"],
+    correct: 2,
+    hint: "Think about positive real-world applications of AI technology.",
+    topic: "AI is expected to assist in healthcare (early disease detection), climate modeling, personalized education, and many other domains that benefit humanity."
+  },
+  {
+    q: "Which statement about AI is TRUE?",
+    options: ["AI has human-level consciousness","AI can learn from data to improve over time","All AI systems can perform any task","AI does not need data to work"],
+    correct: 1,
+    hint: "This is the core definition of machine learning.",
+    topic: "The defining characteristic of modern AI is its ability to learn from data and improve its performance over time through a process called machine learning."
+  }
+];
+
+/* ── STATE ──────────────────────────────────────────────── */
+const TOTAL = QUESTIONS.length;
+let currentQ    = 0;
+let answers     = new Array(TOTAL).fill(null); // null | 0-3
+let results     = new Array(TOTAL).fill(null); // null | 'correct' | 'wrong'
+let timerSec    = 30 * 60; // 30 minutes
+let timerHandle = null;
+let testDone    = false;
+let chatOpen    = false;
+
+/* ── DOM REFS ───────────────────────────────────────────── */
+const questionNumber = document.getElementById('questionNumber');
+const questionText   = document.getElementById('questionText');
+const optionsList    = document.getElementById('optionsList');
+const feedbackPill   = document.getElementById('feedbackPill');
+const feedbackIcon   = document.getElementById('feedbackIcon');
+const feedbackText   = document.getElementById('feedbackText');
+const hintCard       = document.getElementById('hintCard');
+const hintText       = document.getElementById('hintText');
+const btnPrev        = document.getElementById('btnPrev');
+const btnNext        = document.getElementById('btnNext');
+const qGrid          = document.getElementById('qGrid');
+const progressFill   = document.getElementById('progressFill');
+const qCurrent       = document.getElementById('qCurrent');
+const progressPct    = document.getElementById('progressPct');
+const ringCircle     = document.getElementById('ringCircle');
+const ringPct        = document.getElementById('ringPct');
+const ringSub        = document.getElementById('ringSub');
+const correctCount   = document.getElementById('correctCount');
+const wrongCount     = document.getElementById('wrongCount');
+const timerDisplay   = document.getElementById('timerDisplay');
+const timerText      = document.getElementById('timerText');
+const resultScreen   = document.getElementById('resultScreen');
+const mainContent    = document.getElementById('mainContent');
+
+/* ── INIT ───────────────────────────────────────────────── */
+function init() {
+  buildQGrid();
+  renderQuestion(0);
+  startTimer();
+}
+
+/* ── BUILD QUESTION GRID ────────────────────────────────── */
+function buildQGrid() {
+  qGrid.innerHTML = '';
+  for (let i = 0; i < TOTAL; i++) {
+    const btn = document.createElement('button');
+    btn.className = 'q-btn';
+    btn.id = `qbtn-${i}`;
+    btn.innerHTML = `<span>${i + 1}</span>`;
+    btn.onclick = () => goTo(i);
+    qGrid.appendChild(btn);
+  }
+  updateQGrid();
+}
+
+function updateQGrid() {
+  for (let i = 0; i < TOTAL; i++) {
+    const btn = document.getElementById(`qbtn-${i}`);
+    btn.className = 'q-btn';
+    btn.innerHTML = '';
+
+    if (i === currentQ) {
+      btn.classList.add('current');
+      btn.innerHTML = `<span>${i + 1}</span>`;
+    } else if (results[i] === 'correct') {
+      btn.classList.add('answered-correct');
+      btn.innerHTML = `<span>${i + 1}</span><span class="q-icon">✓</span>`;
+    } else if (results[i] === 'wrong') {
+      btn.classList.add('answered-wrong');
+      btn.innerHTML = `<span>${i + 1}</span><span class="q-icon">✕</span>`;
+    } else {
+      btn.innerHTML = `<span>${i + 1}</span>`;
+    }
+  }
+}
+
+/* ── RENDER QUESTION ────────────────────────────────────── */
+function renderQuestion(idx) {
+  currentQ = idx;
+  const q = QUESTIONS[idx];
+
+  questionNumber.textContent = `Question ${idx + 1} of ${TOTAL}`;
+  questionText.textContent   = q.q;
+
+  // options
+  optionsList.innerHTML = '';
+  const letters = ['A', 'B', 'C', 'D'];
+  q.options.forEach((opt, i) => {
+    const div = document.createElement('div');
+    div.className = 'option-item';
+    div.innerHTML = `
+      <div class="option-radio"></div>
+      <div class="option-letter">${letters[i]}</div>
+      <span class="option-text">${opt}</span>
+    `;
+
+    // restore state if answered
+    if (answers[idx] !== null) {
+      div.classList.add('disabled');
+      if (i === answers[idx]) {
+        div.classList.add(results[idx] === 'correct' ? 'correct' : 'wrong');
+      } else if (i === q.correct && results[idx] === 'wrong') {
+        div.classList.add('correct');
+      }
+    } else {
+      div.addEventListener('click', () => selectOption(idx, i));
+    }
+
+    optionsList.appendChild(div);
+  });
+
+  // feedback
+  if (answers[idx] !== null) {
+    showFeedback(results[idx] === 'correct');
+  } else {
+    feedbackPill.className = 'feedback-pill';
+  }
+
+  // hint
+  hintCard.style.display = 'none';
+
+  // header bar
+  qCurrent.textContent = idx + 1;
+  updateProgress();
+  updateQGrid();
+  updateNavBtns();
+  updateRightPanel();
+}
+
+/* ── SELECT OPTION ──────────────────────────────────────── */
+function selectOption(qIdx, optIdx) {
+  if (answers[qIdx] !== null) return; // already answered
+
+  const q = QUESTIONS[qIdx];
+  answers[qIdx]  = optIdx;
+  results[qIdx]  = optIdx === q.correct ? 'correct' : 'wrong';
+
+  // update UI
+  const items = optionsList.querySelectorAll('.option-item');
+  items.forEach((item, i) => {
+    item.classList.add('disabled');
+    item.removeEventListener('click', () => {});
+    if (i === optIdx) {
+      item.classList.add(results[qIdx] === 'correct' ? 'correct' : 'wrong');
+    } else if (i === q.correct && results[qIdx] === 'wrong') {
+      item.classList.add('correct');
+    }
+  });
+
+  showFeedback(results[qIdx] === 'correct');
+  updateProgress();
+  updateQGrid();
+  updateRightPanel();
+
+  // Auto-show hint on wrong
+  if (results[qIdx] === 'wrong') {
+    giveHint();
+  }
+}
+
+/* ── FEEDBACK ───────────────────────────────────────────── */
+function showFeedback(isCorrect) {
+  feedbackPill.className = 'feedback-pill show ' + (isCorrect ? 'correct-fb' : 'wrong-fb');
+  if (isCorrect) {
+    feedbackIcon.innerHTML = `<circle cx="12" cy="12" r="9" stroke="#22c55e" stroke-width="2" fill="none"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+    feedbackText.textContent = '✓ Correct! Well done, Serik.';
+  } else {
+    feedbackIcon.innerHTML = `<circle cx="12" cy="12" r="9" stroke="#ef4444" stroke-width="2" fill="none"/><path d="M15 9l-6 6M9 9l6 6" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>`;
+    feedbackText.textContent = `✗ Incorrect. The correct answer is highlighted above.`;
+  }
+}
+
+/* ── PROGRESS ───────────────────────────────────────────── */
+function updateProgress() {
+  const answered = results.filter(r => r !== null).length;
+  const pct = Math.round((answered / TOTAL) * 100);
+
+  // top bar
+  progressFill.style.width = pct + '%';
+  progressPct.textContent  = pct + '%';
+}
+
+/* ── RIGHT PANEL ────────────────────────────────────────── */
+function updateRightPanel() {
+  const answered = results.filter(r => r !== null).length;
+  const correct  = results.filter(r => r === 'correct').length;
+  const wrong    = results.filter(r => r === 'wrong').length;
+  const pct      = Math.round((answered / TOTAL) * 100);
+
+  // ring
+  const circumference = 2 * Math.PI * 46; // r=46
+  const offset = circumference - (pct / 100) * circumference;
+  ringCircle.style.strokeDasharray  = circumference;
+  ringCircle.style.strokeDashoffset = offset;
+  ringCircle.style.transition       = 'stroke-dashoffset 0.5s ease';
+  ringPct.textContent = pct + '%';
+  ringSub.textContent = `${answered} of ${TOTAL} questions answered`;
+
+  correctCount.textContent = correct;
+  wrongCount.textContent   = wrong;
+}
+
+/* ── NAV BUTTONS ────────────────────────────────────────── */
+function updateNavBtns() {
+  btnPrev.disabled = currentQ === 0;
+  btnPrev.style.opacity = currentQ === 0 ? '0.4' : '1';
+
+  const isLast = currentQ === TOTAL - 1;
+  btnNext.innerHTML = isLast
+    ? `Submit test <svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none"/></svg>`
+    : `Next question <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+}
+
+/* ── NAVIGATION ─────────────────────────────────────────── */
+function goTo(idx) {
+  if (idx < 0 || idx >= TOTAL) return;
+  renderQuestion(idx);
+}
+
+function handleNext() {
+  if (currentQ === TOTAL - 1) {
+    // Submit
+    finishTest();
+  } else {
+    goTo(currentQ + 1);
+  }
+}
+
+/* ── HINT & EXPLAIN ─────────────────────────────────────── */
+function giveHint() {
+  hintText.textContent   = QUESTIONS[currentQ].hint;
+  hintCard.style.display = 'flex';
+}
+
+function explainTopic() {
+  // Opens chat and adds explanation message
+  if (!chatOpen) toggleChat();
+  addChatMsg(QUESTIONS[currentQ].topic, 'ai');
+}
+
+/* ── TIMER ──────────────────────────────────────────────── */
+function startTimer() {
+  timerHandle = setInterval(() => {
+    timerSec--;
+    if (timerSec <= 0) {
+      clearInterval(timerHandle);
+      finishTest(true);
+    }
+    const m = Math.floor(timerSec / 60).toString().padStart(2, '0');
+    const s = (timerSec % 60).toString().padStart(2, '0');
+    timerText.textContent = `${m}:${s}`;
+
+    // warning when < 5 min
+    if (timerSec <= 300) {
+      timerDisplay.classList.add('warning');
+    }
+  }, 1000);
+}
+
+/* ── FINISH TEST ────────────────────────────────────────── */
+function finishTest(timeUp = false) {
+  if (testDone) return;
+  testDone = true;
+  clearInterval(timerHandle);
+
+  const correct  = results.filter(r => r === 'correct').length;
+  const wrong    = results.filter(r => r === 'wrong').length;
+  const answered = results.filter(r => r !== null).length;
+  const score    = Math.round((correct / TOTAL) * 100);
+  const passed   = score >= 70;
+  const timeTaken = (30 * 60 - timerSec);
+  const mm = Math.floor(timeTaken / 60);
+  const ss = timeTaken % 60;
+
+  // hide question UI
+  document.querySelector('.test-left').style.display  = 'none';
+  document.querySelector('.test-right').style.display = 'none';
+
+  resultScreen.classList.add('show');
+  resultScreen.style.gridColumn = '1 / -1';
+
+  const icon    = passed ? '🏆' : '📚';
+  const title   = passed ? 'Congratulations, Serik!' : 'Keep Learning!';
+  const subtitle = passed
+    ? `You passed the AI Basics Final Test with a score of ${score}%.`
+    : `You scored ${score}%. You need 70% to pass. Review the lessons and try again!`;
+
+  resultScreen.innerHTML = `
+    <div class="result-icon">${icon}</div>
+    <div class="result-title">${title}</div>
+    <div class="result-sub">${subtitle}</div>
+
+    <div class="result-stats">
+      <div class="result-stat">
+        <div class="val" style="color:${passed ? '#4f6ef7' : '#ef4444'}">${score}%</div>
+        <div class="lbl">Final score</div>
+      </div>
+      <div class="result-stat">
+        <div class="val green">${correct}</div>
+        <div class="lbl">Correct</div>
+      </div>
+      <div class="result-stat">
+        <div class="val red">${wrong}</div>
+        <div class="lbl">Incorrect</div>
+      </div>
+      <div class="result-stat">
+        <div class="val">${answered}</div>
+        <div class="lbl">Answered</div>
+      </div>
+      <div class="result-stat">
+        <div class="val">${mm}m ${ss}s</div>
+        <div class="lbl">Time taken</div>
+      </div>
+    </div>
+
+    <div class="result-actions">
+      ${passed
+        ? `<button class="btn-result-primary" onclick="window.location.href='certificate.html'">
+             🎓 View Certificate
+           </button>`
+        : `<button class="btn-result-primary" onclick="location.reload()">
+             🔄 Retry Test
+           </button>`
+      }
+      <button class="btn-result-ghost" onclick="window.location.href='lesson.html'">
+        📖 Review Lessons
+      </button>
+      <button class="btn-result-ghost" onclick="window.location.href='dashboard.html'">
+        🏠 Back to Dashboard
+      </button>
+    </div>
+
+    ${timeUp ? `<p style="margin-top:20px;font-size:14px;color:#f59e0b;font-weight:500">⏰ Time's up! The test was submitted automatically.</p>` : ''}
+  `;
+}
+
+/* ── CHAT ───────────────────────────────────────────────── */
+function toggleChat() {
+  chatOpen = !chatOpen;
+  const box = document.getElementById('chatBox');
+  const chevron = document.getElementById('chatChevron');
+  box.classList.toggle('open', chatOpen);
+  chevron.style.transform = chatOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+}
+
+function addChatMsg(text, role) {
+  const msgs = document.getElementById('chatMessages');
+  const div  = document.createElement('div');
+  div.className = 'chat-msg' + (role === 'user' ? ' user' : '');
+  div.innerHTML = role === 'ai'
+    ? `<div class="chat-msg-avatar">
+         <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" stroke="white" stroke-width="1.6"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
+       </div>
+       <div class="chat-bubble ai-b">${text}</div>`
+    : `<div class="chat-bubble user-b">${text}</div>
+       <div class="chat-msg-avatar user-av">S</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+async function sendChat() {
+  const input = document.getElementById('chatInput');
+  const text  = input.value.trim();
+  if (!text) return;
+
+  addChatMsg(text, 'user');
+  input.value = '';
+
+  // Add typing indicator
+  const typing = document.createElement('div');
+  typing.className = 'chat-msg';
+  typing.innerHTML = `<div class="chat-msg-avatar"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" stroke="white" stroke-width="1.6"/></svg></div><div class="chat-bubble ai-b">Typing\u2026</div>`;
+  document.getElementById('chatMessages').appendChild(typing);
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: buildSystemPrompt(),
+        messages: [
+          ...messages,
+          { role: 'user', content: text }
+        ]
+      })
+    });
+    const data = await res.json();
+    typing.remove();
+    const reply = data.content && data.content[0] && data.content[0].text
+      ? data.content[0].text
+      : getDemoReply(text);
+    addChatMsg(reply, 'ai');
+    messages.push({ role: 'user', content: text });
+    messages.push({ role: 'assistant', content: reply });
+  } catch (err) {
+    typing.remove();
+    // Fallback to demo reply if API unavailable
+    const fallback = getDemoReply(text);
+    addChatMsg(fallback, 'ai');
+  }
+}
+
+/* ── START ──────────────────────────────────────────────── */
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,567 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Lesson 8 — SmartLearn AI</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="lesson2.css" />
+
+<style>
+/* Future cards grid */
+.future-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.future-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid #eef2ff;
+}
+
+.future-card-icon {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.future-card-icon svg { width: 18px; height: 18px; }
+
+.future-card strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 3px;
+}
+
+.future-card p {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* Remember box */
+.remember-box {
+  background: #f0f4ff;
+  border: 1px solid #c7d2fe;
+  border-radius: 14px;
+  padding: 16px 18px;
+  min-width: 200px;
+}
+
+.remember-box .rem-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #4f6ef7;
+  margin-bottom: 10px;
+}
+
+.remember-box p {
+  font-size: 13px;
+  color: #374151;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Example icon grid */
+.example-icons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.ex-icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.ex-icon-circle {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.ex-icon-circle svg { width: 30px; height: 30px; }
+
+.ex-icon-item strong {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.ex-icon-item p {
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Premium & upgrade */
+.premium-card {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 16px;
+  padding: 20px;
+  color: white;
+  margin-top: 18px;
+}
+
+.premium-card h4 {
+  font-size: 14px; font-weight: 700;
+  margin-bottom: 4px;
+  display: flex; align-items: center; gap: 6px;
+}
+
+.premium-card p {
+  font-size: 12px;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.btn-upgrade {
+  width: 100%; padding: 10px;
+  border-radius: 10px;
+  border: 2px solid rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.15);
+  color: white; font-size: 13px; font-weight: 600;
+  cursor: pointer; font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+}
+
+.btn-upgrade:hover { background: rgba(255,255,255,0.25); }
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="assets/logo.png">
+      <span>SmartLearn AI</span>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="dashboard.html">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 10.5L12 3l9 7.5V21h-6v-6H9v6H3z" stroke="currentColor" stroke-width="1.8"/></svg></span>
+        Dashboard
+      </a>
+      <a class="active" href="mycourses.html">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V5a2 2 0 0 1 2-2h12v16a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2Z" stroke="currentColor" stroke-width="1.8"/></svg></span>
+        My Courses
+      </a>
+      <a href="progress.html">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 3v18h18M7 15v3M12 9v9M17 5v13" stroke="currentColor" stroke-width="1.8"/></svg></span>
+        Progress
+      </a>
+      <a href="tutor.html">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M4 20c1.8-3.5 5-5 8-5s6.2 1.5 8 5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+        AI Tutor
+      </a>
+      <a href="certificate.html">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/></svg></span>
+        Certificates
+      </a>
+      <a href="claude.html">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M19 12h2M3 12h2M12 3v2M12 19v2" stroke="currentColor" stroke-width="1.8"/></svg></span>
+        Settings
+      </a>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <span>Dashboard</span>
+        <span class="divider">›</span>
+        <span>AI Basics</span>
+        <span class="divider">›</span>
+        <strong>Lesson 8</strong>
+      </div>
+      <div class="topbar-right">
+        <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none"><path d="M18 8a6 6 0 10-12 0c0 7-3 7-3 7h18s-3 0-3-7Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" stroke-width="1.8"/></svg></button>
+        <div class="user">
+          <div class="avatar">S</div>
+          <span>Serik Islam</span>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+        </div>
+      </div>
+    </header>
+
+    <div class="lesson-layout">
+
+      <!-- LEFT -->
+      <div class="lesson">
+
+        <!-- HERO CARD -->
+        <div class="card main-card">
+          <div class="lesson-hero">
+            <div class="hero-left">
+              <span class="lesson-label">Lesson 8</span>
+              <h1>The Future of AI 🚀</h1>
+              <p>Explore exciting possibilities and understand how AI will shape the future.</p>
+            </div>
+            <div class="hero-right">
+              <div class="progress-header">
+                <span>Lesson progress</span>
+                <strong>80%</strong>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width:80%"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- EXPLANATION -->
+          <div class="explanation-card">
+            <div class="ex-header">
+              <h3>1. Explanation</h3>
+              <div class="ex-buttons">
+                <button class="btn-outline" id="simpleBtn">Explain simpler</button>
+                <button class="btn-primary" id="detailedBtn">More detailed</button>
+              </div>
+            </div>
+
+            <div class="ex-body">
+              <div class="ex-left">
+                <div class="ex-text" id="lessonText">
+                  <p>AI is constantly evolving and has a huge potential to solve big problems and improve our world.</p>
+                  <p><strong>In the future, AI may:</strong></p>
+
+                  <div class="future-cards">
+                    <div class="future-card">
+                      <div class="future-card-icon" style="background:#fef2f2">
+                        <svg viewBox="0 0 24 24" fill="none"><path d="M12 21a9 9 0 100-18 9 9 0 000 18z" stroke="#ef4444" stroke-width="1.8"/><path d="M8 12h8M12 8v8" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/></svg>
+                      </div>
+                      <div>
+                        <strong>Improve Healthcare</strong>
+                        <p>AI can help doctors detect diseases earlier and personalize treatments.</p>
+                      </div>
+                    </div>
+
+                    <div class="future-card">
+                      <div class="future-card-icon" style="background:#f0fdf4">
+                        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#22c55e" stroke-width="1.8"/><path d="M7 12c1-3 3-5 5-5s4 2 5 5-3 5-5 5-4-2-5-5z" stroke="#22c55e" stroke-width="1.6"/></svg>
+                      </div>
+                      <div>
+                        <strong>Protect the Environment</strong>
+                        <p>AI can analyze climate data and help reduce pollution and waste.</p>
+                      </div>
+                    </div>
+
+                    <div class="future-card">
+                      <div class="future-card-icon" style="background:#fff7ed">
+                        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="2" stroke="#f59e0b" stroke-width="1.8"/><path d="M9 7V5h6v2" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round"/></svg>
+                      </div>
+                      <div>
+                        <strong>Transform Jobs</strong>
+                        <p>AI will automate some tasks and create new opportunities in different fields.</p>
+                      </div>
+                    </div>
+
+                    <div class="future-card">
+                      <div class="future-card-icon" style="background:#eef2ff">
+                        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#4f6ef7" stroke-width="1.8"/><path d="M4 20c1.8-3.5 5-5 8-5s6.2 1.5 8 5" stroke="#4f6ef7" stroke-width="1.8"/></svg>
+                      </div>
+                      <div>
+                        <strong>Work Alongside Humans</strong>
+                        <p>AI is designed to assist humans, not replace them. Together, we can achieve more.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- RIGHT: Remember box -->
+              <div class="ex-image" style="margin-top:0; align-items:flex-start; padding-top:0">
+                <div class="remember-box">
+                  <div class="rem-title">
+                    <svg viewBox="0 0 24 24" fill="none" style="width:16px;height:16px"><path d="M9.663 17h4.673M12 3v1M6.3 6.3l.7.7M4 12H3M6.3 17.7l.7-.7M17.7 6.3l-.7.7M20 12h1M17.7 17.7l-.7-.7" stroke="#4f6ef7" stroke-width="1.8" stroke-linecap="round"/></svg>
+                    Remember
+                  </div>
+                  <p>The future of AI depends on how we use it today. Responsible innovation leads to a better world for everyone.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXAMPLE -->
+        <div class="example-card" style="flex-direction:column; align-items:flex-start; gap:16px">
+          <div class="example-text" style="max-width:100%">
+            <h3>2. Examples</h3>
+            <p style="font-size:14px;color:#6b7280;margin-bottom:16px">How AI might impact the future.</p>
+          </div>
+
+          <div class="example-icons">
+            <div class="ex-icon-item">
+              <div class="ex-icon-circle" style="background:#fef2f2">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 21a9 9 0 100-18 9 9 0 000 18z" stroke="#ef4444" stroke-width="1.8"/><path d="M8 12h8M12 8v8" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </div>
+              <strong>Smart Healthcare</strong>
+              <p>AI systems help detect health problems before they become serious.</p>
+            </div>
+
+            <div class="ex-icon-item">
+              <div class="ex-icon-circle" style="background:#f0fdf4">
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#22c55e" stroke-width="1.8"/><path d="M7 12c1-3 3-5 5-5s4 2 5 5-3 5-5 5-4-2-5-5z" stroke="#22c55e" stroke-width="1.6"/></svg>
+              </div>
+              <strong>Climate Solutions</strong>
+              <p>AI predicts natural disasters and helps us prepare in advance.</p>
+            </div>
+
+            <div class="ex-icon-item">
+              <div class="ex-icon-circle" style="background:#eef2ff">
+                <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="#4f6ef7" stroke-width="1.8"/><path d="M7 8h10M7 12h10M7 16h6" stroke="#4f6ef7" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </div>
+              <strong>Personalized Education</strong>
+              <p>AI tutors will provide custom lessons for every student.</p>
+            </div>
+
+            <div class="ex-icon-item">
+              <div class="ex-icon-circle" style="background:#fff7ed">
+                <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="3" stroke="#f59e0b" stroke-width="1.8"/><circle cx="17" cy="12" r="2" fill="#f59e0b"/></svg>
+              </div>
+              <strong>Self-Driving Cars</strong>
+              <p>AI will make transportation safer and more efficient in the future.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- QUIZ -->
+        <div class="quiz-card">
+          <h3>3. Quick Check</h3>
+          <p class="quiz-question">What is one way AI can help in the future?</p>
+
+          <div class="option" data-option="A">A) Replace all humans</div>
+          <div class="option" data-option="B" data-correct="true">B) Solve big problems and improve our world</div>
+          <div class="option" data-option="C">C) Only play games</div>
+          <div class="option" data-option="D">D) Make phones heavier</div>
+
+          <button class="btn-disabled" id="submitBtn" disabled>Submit answer</button>
+          <span style="font-size:13px;color:#9ca3af;margin-left:12px;vertical-align:middle">Choose the best answer and click Submit.</span>
+        </div>
+
+        <!-- AI TUTOR -->
+        <div class="card ai-card">
+          <h3>4. Ask AI Tutor</h3>
+          <p class="ai-sub">Have a question about this lesson? Ask your AI tutor.</p>
+          <div class="chat-box" id="chatBox">
+            <div class="message ai">
+              <div class="avatar ai-avatar">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><circle cx="12" cy="12" r="5" stroke="white" stroke-width="1.6"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </div>
+              <div class="bubble">The future of AI is full of possibilities. It can help improve healthcare, protect our planet, create new jobs, and support humans in many ways.</div>
+            </div>
+          </div>
+          <div class="chat-input">
+            <input id="chatInput" placeholder="Type your question here..." />
+            <button id="sendBtn" class="btn-primary">Ask</button>
+          </div>
+        </div>
+
+        <!-- NAV -->
+        <div class="lesson-nav">
+          <button class="btn-light" onclick="window.location.href='lesson7.html'">← Previous lesson</button>
+          <button class="btn-primary" onclick="window.location.href='lesson9.html'">Next lesson →</button>
+        </div>
+
+      </div>
+
+      <!-- RIGHT SIDEBAR -->
+      <aside class="lesson-right">
+
+        <div class="card small">
+          <h4>Course progress</h4>
+          <div class="progress-ring">
+            <svg width="120" height="120">
+              <circle cx="60" cy="60" r="50" stroke="#e5e7eb" stroke-width="8" fill="none"/>
+              <circle cx="60" cy="60" r="50" stroke="#4f6ef7" stroke-width="8" fill="none" stroke-linecap="round" id="progressCircle"/>
+            </svg>
+            <div class="progress-text">80%</div>
+          </div>
+          <p class="progress-sub">8 of 10 lessons completed</p>
+          <a href="progress.html" class="progress-link">View full progress →</a>
+        </div>
+
+        <!-- Course list -->
+        <div class="course-list" id="courseList">
+
+          <div class="course-item done">
+            <span>1. Introduction to AI</span>
+            <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#22c55e"/><path d="M7 12l3 3 7-7" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+          </div>
+
+          <div class="course-item done">
+            <span>2. Understanding AI Tools</span>
+            <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#22c55e"/><path d="M7 12l3 3 7-7" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+          </div>
+
+          <div class="course-item done">
+            <span>3. Prompt Engineering Basics</span>
+            <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#22c55e"/><path d="M7 12l3 3 7-7" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+          </div>
+
+          <div class="course-item done">
+            <span>4. Practical Prompting</span>
+            <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#22c55e"/><path d="M7 12l3 3 7-7" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+          </div>
+
+          <div class="course-item done">
+            <span>5. Using AI in Real Tasks</span>
+            <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#22c55e"/><path d="M7 12l3 3 7-7" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+          </div>
+
+          <div class="course-item done">
+            <span>6. Advanced Prompting</span>
+            <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#22c55e"/><path d="M7 12l3 3 7-7" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+          </div>
+
+          <div class="course-item done">
+            <span>7. The Ethics of AI</span>
+            <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#22c55e"/><path d="M7 12l3 3 7-7" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+          </div>
+
+          <div class="course-item active">
+            <div>
+              <span style="display:block">8. The Future of AI</span>
+              <span style="font-size:11px;color:#6b7280">⏱ 10:00</span>
+            </div>
+            <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#4f6ef7"/><path d="M10 8l6 4-6 4z" fill="white"/></svg></div>
+          </div>
+
+          <div class="course-item locked">
+            <span>9. Final Test</span>
+            <div class="icon"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2" fill="#9ca3af"/><path d="M8 10V7a4 4 0 018 0v3" stroke="#9ca3af" stroke-width="2" fill="none"/></svg></div>
+          </div>
+
+          <div class="course-item locked">
+            <span>10. Course Summary</span>
+            <div class="icon"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2" fill="#9ca3af"/><path d="M8 10V7a4 4 0 018 0v3" stroke="#9ca3af" stroke-width="2" fill="none"/></svg></div>
+          </div>
+
+        </div>
+
+        <!-- Need help -->
+        <div class="card" style="margin-top:18px;padding:20px">
+          <h4 style="font-size:14px;font-weight:700;color:#111827;margin-bottom:6px">Need help?</h4>
+          <p style="font-size:13px;color:#6b7280;margin-bottom:14px;line-height:1.5">Our AI tutor is always here to help you learn better.</p>
+          <a href="tutor.html" class="btn-primary" style="display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;border-radius:14px;padding:10px 16px;font-size:13px;font-weight:600">
+            <svg viewBox="0 0 24 24" fill="none" style="width:16px;height:16px"><circle cx="12" cy="12" r="5" stroke="white" stroke-width="1.6"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
+            Go to AI Tutor
+          </a>
+        </div>
+
+        <!-- Upgrade -->
+        <div class="premium-card">
+          <h4>⭐ Upgrade to Premium</h4>
+          <p>Unlock unlimited AI tutor chat, quizzes, and advanced features.</p>
+          <button class="btn-upgrade">Upgrade now</button>
+        </div>
+
+      </aside>
+
+    </div>
+
+  </main>
+
+</div>
+
+<script>
+const circle = document.getElementById('progressCircle');
+const r = 50, p = 80, c = 2 * Math.PI * r;
+circle.style.strokeDasharray = c;
+circle.style.strokeDashoffset = c - (p / 100) * c;
+circle.style.transform = 'rotate(-90deg)';
+circle.style.transformOrigin = '60px 60px';
+
+const options = document.querySelectorAll('.option');
+const submitBtn = document.getElementById('submitBtn');
+let selected = null;
+
+options.forEach(o => {
+  o.addEventListener('click', () => {
+    options.forEach(x => x.classList.remove('active'));
+    o.classList.add('active');
+    selected = o;
+    submitBtn.disabled = false;
+    submitBtn.classList.replace('btn-disabled', 'btn-primary');
+  });
+});
+
+submitBtn.addEventListener('click', () => {
+  if (!selected) return;
+  options.forEach(o => o.classList.remove('correct', 'wrong'));
+  selected.dataset.correct === 'true' ? selected.classList.add('correct') : (selected.classList.add('wrong'), options.forEach(o => { if (o.dataset.correct === 'true') o.classList.add('correct'); }));
+  options.forEach(o => o.style.pointerEvents = 'none');
+  submitBtn.style.pointerEvents = 'none';
+});
+
+const chatBox = document.getElementById('chatBox');
+const chatInput = document.getElementById('chatInput');
+const sendBtn = document.getElementById('sendBtn');
+
+function addMessage(text, type) {
+  const msg = document.createElement('div');
+  msg.classList.add('message', type);
+  msg.innerHTML = `${type === 'ai' ? `<div class="avatar ai-avatar"><svg viewBox="0 0 24 24" width="18" height="18" fill="none"><circle cx="12" cy="12" r="5" stroke="white" stroke-width="1.6"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg></div>` : ''}<div class="bubble">${text}</div>`;
+  chatBox.appendChild(msg);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+async function sendMessage() {
+  const text = chatInput.value.trim();
+  if (!text) return;
+  addMessage(text, 'user');
+  chatInput.value = '';
+  const typing = document.createElement('div');
+  typing.classList.add('message', 'ai');
+  typing.innerHTML = `<div class="bubble">Typing...</div>`;
+  chatBox.appendChild(typing);
+  try {
+    const res = await fetch('http://localhost:3000/chat', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({message: text, mode: 'lesson'}) });
+    const data = await res.json();
+    typing.remove();
+    addMessage(data.reply, 'ai');
+  } catch { typing.innerHTML = `<div class="bubble">AI error 😢</div>`; }
+}
+
+sendBtn.addEventListener('click', sendMessage);
+chatInput.addEventListener('keypress', e => { if (e.key === 'Enter') sendMessage(); });
+
+const lessonText = document.getElementById('lessonText');
+document.getElementById('simpleBtn').addEventListener('click', () => {
+  lessonText.innerHTML = `<p>AI will change the world in 4 big ways:</p><div class="future-cards"><div class="future-card"><div class="future-card-icon" style="background:#fef2f2"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21a9 9 0 100-18 9 9 0 000 18z" stroke="#ef4444" stroke-width="1.8"/><path d="M8 12h8M12 8v8" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/></svg></div><div><strong>Improve Healthcare</strong><p>Detect diseases early.</p></div></div><div class="future-card"><div class="future-card-icon" style="background:#f0fdf4"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#22c55e" stroke-width="1.8"/></svg></div><div><strong>Protect Environment</strong><p>Reduce pollution and waste.</p></div></div><div class="future-card"><div class="future-card-icon" style="background:#fff7ed"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="2" stroke="#f59e0b" stroke-width="1.8"/></svg></div><div><strong>Transform Jobs</strong><p>Create new opportunities.</p></div></div><div class="future-card"><div class="future-card-icon" style="background:#eef2ff"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#4f6ef7" stroke-width="1.8"/><path d="M4 20c1.8-3.5 5-5 8-5s6.2 1.5 8 5" stroke="#4f6ef7" stroke-width="1.8"/></svg></div><div><strong>Work With Humans</strong><p>Assist, not replace.</p></div></div></div>`;
+});
+
+document.getElementById('detailedBtn').addEventListener('click', () => {
+  lessonText.innerHTML = `<p>AI is undergoing rapid advancement across multiple domains, driven by increased compute power, better algorithms, and vast datasets. Here's a detailed outlook:</p><div class="future-cards"><div class="future-card"><div class="future-card-icon" style="background:#fef2f2"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21a9 9 0 100-18 9 9 0 000 18z" stroke="#ef4444" stroke-width="1.8"/><path d="M8 12h8M12 8v8" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/></svg></div><div><strong>Precision Medicine</strong><p>AI models can analyze genomic data, imaging, and patient history to recommend personalized treatments with higher accuracy than traditional methods.</p></div></div><div class="future-card"><div class="future-card-icon" style="background:#f0fdf4"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#22c55e" stroke-width="1.8"/></svg></div><div><strong>Climate Modelling</strong><p>Deep learning models now outperform traditional climate simulations, enabling earlier prediction of extreme weather events and optimizing renewable energy grids.</p></div></div><div class="future-card"><div class="future-card-icon" style="background:#fff7ed"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="13" rx="2" stroke="#f59e0b" stroke-width="1.8"/></svg></div><div><strong>Labour Market Shifts</strong><p>Automation will displace routine tasks while creating demand for AI oversight roles, prompt engineers, and human-AI collaboration specialists.</p></div></div><div class="future-card"><div class="future-card-icon" style="background:#eef2ff"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#4f6ef7" stroke-width="1.8"/><path d="M4 20c1.8-3.5 5-5 8-5s6.2 1.5 8 5" stroke="#4f6ef7" stroke-width="1.8"/></svg></div><div><strong>Augmented Intelligence</strong><p>Rather than replacement, the dominant paradigm is human-AI teaming, where AI handles data processing and pattern recognition while humans provide judgment and creativity.</p></div></div></div>`;
+});
+</script>
+
+</body>
+</html>

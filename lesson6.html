@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Lesson 6 — SmartLearn AI</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="lesson2.css" />
+</head>
+
+<body>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+  <div class="sidebar-logo">
+    <img src="assets/logo.png">
+    <span>SmartLearn AI</span>
+  </div>
+
+  <nav class="sidebar-nav">
+
+    <a href="dashboard.html">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M3 10.5L12 3l9 7.5V21h-6v-6H9v6H3z" stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+      </span>
+      Dashboard
+    </a>
+
+    <a class="active" href="#">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M4 19V5a2 2 0 0 1 2-2h12v16a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2Z" stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+      </span>
+      My Courses
+    </a>
+
+    <a href="#">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M3 3v18h18M7 15v3M12 9v9M17 5v13" stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+      </span>
+      Progress
+    </a>
+
+    <a href="#">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M4 20c1.8-3.5 5-5 8-5s6.2 1.5 8 5" stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+      </span>
+      AI Tutor
+    </a>
+
+    <a href="#">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+      </span>
+      Certificates
+    </a>
+
+    <a href="#">
+      <span class="icon">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M19 12h2M3 12h2M12 3v2M12 19v2" stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+      </span>
+      Settings
+    </a>
+
+  </nav>
+
+</aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+
+      <div class="topbar-left">
+        <span>Dashboard</span>
+        <span class="divider">›</span>
+        <span>Course: AI Basics</span>
+        <span class="divider">›</span>
+        <strong>Lesson 6</strong>
+      </div>
+
+      <div class="topbar-right">
+        <button class="icon-btn">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="icon-btn">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M18 8a6 6 0 10-12 0c0 7-3 7-3 7h18s-3 0-3-7Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </button>
+        <div class="user">
+          <div class="avatar">S</div>
+          <span>Serik Islam</span>
+          <svg class="arrow" viewBox="0 0 24 24">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+      </div>
+
+    </header>
+
+    <div class="lesson-layout">
+
+      <!-- LEFT -->
+      <div class="lesson">
+
+        <!-- HEADER CARD -->
+        <div class="card main-card">
+
+          <div class="lesson-hero">
+
+            <div class="hero-left">
+              <span class="lesson-label">Lesson 6</span>
+              <h1>Why AI Makes Mistakes</h1>
+              <p>
+                Understand the limitations of AI and why it doesn't always give perfect answers.
+              </p>
+            </div>
+
+            <div class="hero-right">
+              <div class="progress-header">
+                <span>Lesson progress</span>
+                <strong>60%</strong>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width:60%"></div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- EXPLANATION -->
+          <div class="explanation-card">
+
+            <div class="ex-header">
+              <h3>1. Explanation</h3>
+            </div>
+
+            <div class="ex-body">
+
+              <div class="ex-left">
+
+                <div class="ex-text" id="lessonText">
+                  <p>
+                    AI is powerful, but it can still make mistakes. Here are the main reasons:
+                  </p>
+                  <p>
+                    <strong>Limited Knowledge</strong><br>
+                    AI is trained on data available up to a certain time. It may not know new events.
+                  </p>
+                  <p>
+                    <strong>Incorrect or Incomplete Data</strong><br>
+                    If the training data is wrong or incomplete, AI can learn the wrong thing.
+                  </p>
+                  <p>
+                    <strong>Ambiguous Questions</strong><br>
+                    If your question is unclear, AI may misunderstand and give an incorrect answer.
+                  </p>
+                  <p>
+                    <strong>AI Doesn't Truly Understand</strong><br>
+                    AI predicts the best possible answer — it doesn't have human consciousness or real-world experience.
+                  </p>
+                </div>
+
+                <div class="ex-buttons">
+                  <button class="btn-outline" id="simpleBtn">Explain simpler</button>
+                  <button class="btn-primary" id="detailedBtn">More detailed</button>
+                </div>
+
+              </div>
+
+              <div class="ex-image">
+                <svg viewBox="0 0 280 260" xmlns="http://www.w3.org/2000/svg" width="280" height="260">
+  <!-- Background circle glow -->
+  <circle cx="140" cy="130" r="110" fill="#eef2ff" opacity="0.6"/>
+  <circle cx="140" cy="130" r="80" fill="#e0e7ff" opacity="0.4"/>
+
+  <!-- Robot body -->
+  <rect x="85" y="110" width="110" height="90" rx="18" fill="#4f6ef7"/>
+  <rect x="91" y="116" width="98" height="78" rx="14" fill="#6a7efc"/>
+
+  <!-- Robot head -->
+  <rect x="95" y="65" width="90" height="60" rx="16" fill="#4f6ef7"/>
+  <rect x="101" y="71" width="78" height="48" rx="12" fill="#6a7efc"/>
+
+  <!-- Robot eyes -->
+  <rect x="108" y="80" width="22" height="16" rx="5" fill="#fff" opacity="0.95"/>
+  <rect x="150" y="80" width="22" height="16" rx="5" fill="#fff" opacity="0.95"/>
+  <circle cx="119" cy="88" r="5" fill="#4f6ef7"/>
+  <circle cx="161" cy="88" r="5" fill="#4f6ef7"/>
+  <circle cx="121" cy="86" r="2" fill="white"/>
+  <circle cx="163" cy="86" r="2" fill="white"/>
+
+  <!-- Sad mouth -->
+  <path d="M115 102 Q140 96 165 102" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Antenna -->
+  <line x1="140" y1="65" x2="140" y2="48" stroke="#4f6ef7" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="140" cy="44" r="6" fill="#ef4444"/>
+  <circle cx="140" cy="44" r="3" fill="white"/>
+
+  <!-- Robot arms -->
+  <rect x="55" y="118" width="32" height="14" rx="7" fill="#4f6ef7"/>
+  <rect x="193" y="118" width="32" height="14" rx="7" fill="#4f6ef7"/>
+  <!-- Hands -->
+  <circle cx="50" cy="125" r="10" fill="#6a7efc"/>
+  <circle cx="230" cy="125" r="10" fill="#6a7efc"/>
+
+  <!-- Robot legs -->
+  <rect x="100" y="196" width="24" height="36" rx="8" fill="#4f6ef7"/>
+  <rect x="156" y="196" width="24" height="36" rx="8" fill="#4f6ef7"/>
+  <rect x="97" y="224" width="30" height="10" rx="5" fill="#3b5bdb"/>
+  <rect x="153" y="224" width="30" height="10" rx="5" fill="#3b5bdb"/>
+
+  <!-- Warning triangle floating -->
+  <g transform="translate(178, 52)">
+    <polygon points="30,4 56,50 4,50" fill="#fbbf24" opacity="0.95"/>
+    <polygon points="30,8 52,46 8,46" fill="#fde68a"/>
+    <text x="30" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#92400e">!</text>
+  </g>
+
+  <!-- Error bubbles -->
+  <rect x="30" y="80" width="46" height="28" rx="10" fill="white" filter="url(#shadow6)"/>
+  <text x="53" y="99" text-anchor="middle" font-size="18">❌</text>
+
+  <rect x="200" y="160" width="46" height="28" rx="10" fill="white" filter="url(#shadow6)"/>
+  <text x="223" y="179" text-anchor="middle" font-size="18">⚠️</text>
+
+  <defs>
+    <filter id="shadow6" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#4f6ef7" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+</svg>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- EXAMPLE -->
+        <div class="example-card">
+
+          <div class="example-text">
+            <h3>2. Example</h3>
+
+            <div class="example-item">
+              <strong>Outdated Information:</strong>
+              <p>AI might say a store is open on Sunday, but the schedule recently changed.</p>
+            </div>
+
+            <div class="example-item">
+              <strong>Wrong Data:</strong>
+              <p>If data says "the sky is green", AI may learn and repeat that incorrectly.</p>
+            </div>
+
+            <div class="example-item">
+              <strong>Unclear Question:</strong>
+              <p>If you ask a vague question, AI might guess and give a wrong answer.</p>
+            </div>
+          </div>
+
+          <div class="example-image">
+            <svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg" width="280" height="200">
+  <defs>
+    <filter id="sh6e">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#4f6ef7" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="260" height="180" rx="20" fill="#f5f7ff"/>
+
+  <!-- Calendar card -->
+  <rect x="20" y="20" width="100" height="90" rx="14" fill="white" filter="url(#sh6e)"/>
+  <rect x="20" y="20" width="100" height="28" rx="14" fill="#4f6ef7"/>
+  <rect x="20" y="34" width="100" height="14" fill="#4f6ef7"/>
+  <text x="70" y="38" text-anchor="middle" font-size="11" font-weight="700" fill="white">CALENDAR</text>
+  <!-- grid -->
+  <text x="35" y="60" font-size="10" fill="#6b7280">M  T  W  T  F</text>
+  <text x="35" y="74" font-size="10" fill="#374151">1  2  3  4  5</text>
+  <text x="35" y="88" font-size="10" fill="#374151">8  9  10 11 12</text>
+  <!-- X mark on calendar -->
+  <circle cx="100" cy="75" r="13" fill="#fef2f2"/>
+  <line x1="94" y1="69" x2="106" y2="81" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="106" y1="69" x2="94" y2="81" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Database / data card -->
+  <rect x="140" y="20" width="120" height="90" rx="14" fill="white" filter="url(#sh6e)"/>
+  <ellipse cx="200" cy="38" rx="46" ry="14" fill="#4f6ef7"/>
+  <ellipse cx="200" cy="38" rx="46" ry="10" fill="#6a7efc"/>
+  <rect x="154" y="38" width="92" height="32" fill="#6a7efc"/>
+  <ellipse cx="200" cy="70" rx="46" ry="14" fill="#4f6ef7"/>
+  <ellipse cx="200" cy="70" rx="46" ry="10" fill="#818cf8"/>
+  <!-- wrong data indicator -->
+  <rect x="175" y="46" width="50" height="12" rx="4" fill="white" opacity="0.3"/>
+  <text x="200" y="56" text-anchor="middle" font-size="8" fill="white" font-weight="600">WRONG DATA</text>
+
+  <!-- Arrow between -->
+  <path d="M122 65 L138 65" stroke="#ef4444" stroke-width="2" stroke-dasharray="3,2" marker-end="url(#arr6)"/>
+  <defs>
+    <marker id="arr6" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#ef4444"/>
+    </marker>
+  </defs>
+
+  <!-- Bottom row: question mark bubble -->
+  <rect x="20" y="128" width="120" height="54" rx="14" fill="white" filter="url(#sh6e)"/>
+  <text x="44" y="165" font-size="36" fill="#f59e0b">?</text>
+  <text x="78" y="148" font-size="10" fill="#6b7280">Unclear</text>
+  <text x="78" y="162" font-size="10" fill="#6b7280">question</text>
+  <text x="78" y="176" font-size="10" fill="#ef4444" font-weight="600">→ Wrong answer</text>
+
+  <!-- Brain / AI -->
+  <rect x="158" y="128" width="100" height="54" rx="14" fill="white" filter="url(#sh6e)"/>
+  <text x="208" y="168" text-anchor="middle" font-size="34">🤖</text>
+  <rect x="166" y="132" width="84" height="14" rx="5" fill="#fef3c7"/>
+  <text x="208" y="143" text-anchor="middle" font-size="9" fill="#92400e" font-weight="600">NO REAL THINKING</text>
+</svg>
+          </div>
+
+        </div>
+
+        <!-- QUIZ -->
+        <div class="quiz-card">
+
+          <h3>3. Quick Check</h3>
+          <p class="quiz-question">Why might AI give an incorrect answer?</p>
+
+          <div class="option" data-option="A">A) Because it gets tired</div>
+          <div class="option" data-option="B" data-correct="true">B) Because it has limited knowledge</div>
+          <div class="option" data-option="C">C) Because it doesn't have a computer</div>
+          <div class="option" data-option="D">D) Because it always guesses randomly</div>
+
+          <button class="btn-disabled" id="submitBtn" disabled>
+            Submit answer
+          </button>
+
+        </div>
+
+        <!-- AI TUTOR -->
+        <div class="card ai-card">
+
+          <h3>4. Ask AI Tutor</h3>
+          <p class="ai-sub">Have a question about this lesson? Ask your AI tutor.</p>
+
+          <div class="chat-box" id="chatBox">
+            <div class="message ai">
+              <div class="avatar ai-avatar">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+                  <circle cx="12" cy="12" r="5" stroke="white" stroke-width="1.6"/>
+                  <path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="bubble">
+                Hi! Ask me anything about this lesson.
+              </div>
+            </div>
+          </div>
+
+          <div class="chat-input">
+            <input id="chatInput" placeholder="Type your question here..." />
+            <button id="sendBtn" class="btn-primary">Ask</button>
+          </div>
+
+        </div>
+
+        <!-- NAV -->
+        <div class="lesson-nav">
+          <button class="btn-light" onclick="window.location.href='lesson5.html'">← Previous lesson</button>
+          <button class="btn-primary" onclick="window.location.href='lesson7.html'">Next lesson →</button>
+        </div>
+
+      </div>
+
+      <!-- RIGHT SIDEBAR -->
+      <aside class="lesson-right">
+
+        <div class="card small">
+          <h4>Course progress</h4>
+
+          <div class="progress-ring">
+            <svg width="120" height="120">
+              <circle cx="60" cy="60" r="50" stroke="#e5e7eb" stroke-width="8" fill="none"/>
+              <circle cx="60" cy="60" r="50" stroke="#4f6ef7" stroke-width="8" fill="none"
+                stroke-linecap="round"
+                stroke-dasharray="314"
+                stroke-dashoffset="125"/>
+            </svg>
+            <div class="progress-text">60%</div>
+          </div>
+
+          <p class="progress-sub">6 of 10 lessons completed</p>
+          <a href="#" class="progress-link">View full progress →</a>
+        </div>
+
+        <div class="course-list" id="courseList">
+
+          <div class="course-item done" data-index="1">
+            <span>1. Introduction to Artificial Intelligence</span>
+            <div class="icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#22c55e"/><path d="M7 12l3 3 7-7" stroke="white" stroke-width="2" fill="none"/></svg>
+            </div>
+          </div>
+
+          <div class="course-item done" data-index="2">
+            <span>2. Types of AI</span>
+            <div class="icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#22c55e"/><path d="M7 12l3 3 7-7" stroke="white" stroke-width="2" fill="none"/></svg>
+            </div>
+          </div>
+
+          <div class="course-item done" data-index="3">
+            <span>3. How AI learns</span>
+            <div class="icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#22c55e"/><path d="M7 12l3 3 7-7" stroke="white" stroke-width="2" fill="none"/></svg>
+            </div>
+          </div>
+
+          <div class="course-item done" data-index="4">
+            <span>4. Structure of a good prompt</span>
+            <div class="icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#22c55e"/><path d="M7 12l3 3 7-7" stroke="white" stroke-width="2" fill="none"/></svg>
+            </div>
+          </div>
+
+          <div class="course-item done" data-index="5">
+            <span>5. Common mistakes in prompting</span>
+            <div class="icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#22c55e"/><path d="M7 12l3 3 7-7" stroke="white" stroke-width="2" fill="none"/></svg>
+            </div>
+          </div>
+
+          <div class="course-item active" data-index="6">
+            <span>6. Why AI makes mistakes</span>
+            <div class="icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#4f6ef7"/><path d="M10 8l6 4-6 4z" fill="white"/></svg>
+            </div>
+          </div>
+
+          <div class="course-item locked" data-index="7">
+            <span>7. AI in everyday life</span>
+            <div class="icon">
+              <svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2" fill="#9ca3af"/><path d="M8 10V7a4 4 0 018 0v3" stroke="#9ca3af" stroke-width="2" fill="none"/></svg>
+            </div>
+          </div>
+
+          <div class="course-item locked" data-index="8">
+            <span>8. The future of AI</span>
+            <div class="icon">
+              <svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2" fill="#9ca3af"/><path d="M8 10V7a4 4 0 018 0v3" stroke="#9ca3af" stroke-width="2" fill="none"/></svg>
+            </div>
+          </div>
+
+          <div class="course-item locked" data-index="9">
+            <span>9. Final test AI basics</span>
+            <div class="icon">
+              <svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2" fill="#9ca3af"/><path d="M8 10V7a4 4 0 018 0v3" stroke="#9ca3af" stroke-width="2" fill="none"/></svg>
+            </div>
+          </div>
+
+          <div class="course-item locked" data-index="10">
+            <span>10. Course Summary</span>
+            <div class="icon">
+              <svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2" fill="#9ca3af"/><path d="M8 10V7a4 4 0 018 0v3" stroke="#9ca3af" stroke-width="2" fill="none"/></svg>
+            </div>
+          </div>
+
+        </div>
+
+      </aside>
+
+    </div>
+
+  </main>
+
+</div>
+
+<script>
+/* ── QUIZ ── */
+const options = document.querySelectorAll(".option");
+const submitBtn = document.getElementById("submitBtn");
+let selected = null;
+
+options.forEach(option => {
+  option.addEventListener("click", () => {
+    options.forEach(o => o.classList.remove("active"));
+    option.classList.add("active");
+    selected = option;
+    submitBtn.disabled = false;
+    submitBtn.classList.remove("btn-disabled");
+    submitBtn.classList.add("btn-primary");
+  });
+});
+
+submitBtn.addEventListener("click", () => {
+  if (!selected) return;
+  const isCorrect = selected.dataset.correct === "true";
+  options.forEach(o => o.classList.remove("correct", "wrong"));
+  if (isCorrect) {
+    selected.classList.add("correct");
+  } else {
+    selected.classList.add("wrong");
+    options.forEach(o => { if (o.dataset.correct === "true") o.classList.add("correct"); });
+  }
+  options.forEach(o => o.style.pointerEvents = "none");
+});
+
+/* ── AI CHAT ── */
+const chatBox = document.getElementById("chatBox");
+const input   = document.getElementById("chatInput");
+const btn     = document.getElementById("sendBtn");
+
+function addMessage(text, type) {
+  const msg = document.createElement("div");
+  msg.classList.add("message", type);
+  msg.innerHTML = `
+    ${type === "ai" ? `<div class="avatar ai-avatar">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+        <circle cx="12" cy="12" r="5" stroke="white" stroke-width="1.6"/>
+        <path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </div>` : ""}
+    <div class="bubble">${text}</div>
+  `;
+  chatBox.appendChild(msg);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+async function sendMessage() {
+  const text = input.value.trim();
+  if (!text) return;
+  addMessage(text, "user");
+  input.value = "";
+  const typing = document.createElement("div");
+  typing.classList.add("message", "ai");
+  typing.innerHTML = `<div class="bubble">Typing...</div>`;
+  chatBox.appendChild(typing);
+  try {
+    const res = await fetch("http://localhost:3000/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: text, mode: "lesson" })
+    });
+    const data = await res.json();
+    typing.remove();
+    addMessage(data.reply, "ai");
+  } catch (err) {
+    typing.innerHTML = `<div class="bubble">AI error 😢</div>`;
+  }
+}
+
+btn.addEventListener("click", sendMessage);
+input.addEventListener("keypress", e => { if (e.key === "Enter") sendMessage(); });
+
+/* ── EXPLAIN SIMPLER / MORE DETAILED ── */
+const lessonText  = document.getElementById("lessonText");
+const simpleBtn   = document.getElementById("simpleBtn");
+const detailedBtn = document.getElementById("detailedBtn");
+
+const simpleVersion = `
+<p>AI makes mistakes because it isn't perfect.</p>
+<p><strong>Old data</strong> — it doesn't know recent events.</p>
+<p><strong>Bad data</strong> — if taught wrong info, it repeats it.</p>
+<p><strong>Unclear questions</strong> — vague input leads to wrong output.</p>
+<p><strong>No real understanding</strong> — AI guesses, it doesn't truly think.</p>
+`;
+
+const detailedVersion = `
+<p>AI systems are trained on large datasets, but several fundamental limitations can lead to errors:</p>
+<p><strong>Training Data Cutoff:</strong> AI models are trained on data up to a specific date. Any events, discoveries, or changes after that date are unknown to the model, potentially leading to outdated responses.</p>
+<p><strong>Data Quality Issues:</strong> If the training dataset contains biased, incorrect, or incomplete information, the model will learn those inaccuracies and replicate them in its outputs.</p>
+<p><strong>Ambiguity in Input:</strong> Natural language is inherently ambiguous. When a user's query lacks sufficient context or precision, the AI may interpret it differently than intended, generating irrelevant answers.</p>
+<p><strong>Lack of True Comprehension:</strong> AI does not possess consciousness or genuine understanding. It predicts statistically likely responses based on patterns — without reasoning about truth or real-world consequences.</p>
+`;
+
+simpleBtn.addEventListener("click",   () => { lessonText.innerHTML = simpleVersion; });
+detailedBtn.addEventListener("click", () => { lessonText.innerHTML = detailedVersion; });
+</script>
+
+</body>
+</html>
