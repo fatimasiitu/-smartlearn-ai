@@ -1,0 +1,193 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(180deg, #f4f7ff, #eef2ff);
+  color: #1f2937;
+}
+
+a{
+  text-decoration: none;
+}
+
+.onboarding-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.onboarding-card {
+  width: 100%;
+  max-width: 1100px;
+  background: #fff;
+  border-radius: 28px;
+  padding: 40px 48px 56px;
+  box-shadow: 0 40px 80px rgba(79,110,247,0.15);
+}
+
+/* HEADER */
+.onboarding-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 48px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+}
+
+.brand img {
+  width: 36px;
+  height: 36px;
+}
+
+.logo {
+  font-size: 20px;
+}
+
+.progress {
+  text-align: right;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.progress-bar {
+  width: 180px;
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 6px;
+  margin-top: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4f6ef7, #7aa2ff);
+  border-radius: 6px;
+}
+
+/* CONTENT */
+.onboarding-content {
+  text-align: center;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #6b7280;
+  margin-bottom: 48px;
+}
+
+/* OPTIONS */
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.option-card {
+  position: relative;
+  background: #f9fbff;
+  border-radius: 20px;
+  padding: 28px 32px;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.option-card:hover {
+  background: #eef3ff;
+}
+
+.option-card.active {
+  background: linear-gradient(180deg, #f0f4ff, #ffffff);
+  border-color: #4f6ef7;
+}
+
+.option-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: #f1f5ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.option-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.option-text {
+  text-align: left;
+}
+
+.option-text strong {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.option-text span {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.checkmark {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #4f6ef7;
+  color: #fff;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.option-card.active .checkmark {
+  display: flex;
+}
+
+/* BUTTONS */
+.btn-primary {
+  padding: 18px 48px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 14px;
+  border: none;
+  color: #fff;
+  background: linear-gradient(180deg, #5b74f6, #4f6ef7);
+  box-shadow: 0 16px 32px rgba(79,110,247,0.3);
+  cursor: pointer;
+}
+
+.btn-skip {
+  display: block;
+  margin: 16px auto 0;
+  background: none;
+  border: none;
+  color: #6b7280;
+  font-size: 14px;
+  cursor: pointer;
+}

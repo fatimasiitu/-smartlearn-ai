@@ -1,0 +1,243 @@
+/* RESET */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(180deg, #f4f7ff, #eef2ff);
+  color: #1f2937;
+}
+
+a{
+  text-decoration: none;
+}
+/* WRAPPER */
+.onboarding-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+/* CARD */
+.onboarding-card {
+  width: 100%;
+  max-width: 1100px;
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 40px 48px 56px;
+  box-shadow: 0 40px 80px rgba(79, 110, 247, 0.15);
+}
+
+/* HEADER */
+.onboarding-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 48px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+}
+
+.brand img {
+  width: 36px;
+  height: 36px;
+}
+
+.progress {
+  text-align: right;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.progress-bar {
+  width: 180px;
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 6px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, #4f6ef7, #7aa2ff);
+  border-radius: 6px;
+}
+
+/* CONTENT */
+.onboarding-content {
+  text-align: center;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #6b7280;
+  margin-bottom: 48px;
+}
+
+/* OPTIONS GRID */
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+/* OPTION CARD */
+.option-card {
+  position: relative;
+  background: #f9fbff;
+  border-radius: 20px;
+  padding: 26px 28px;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* ICON CONTAINER */
+.option-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: #f3f6ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.option-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+/* TEXT */
+.option-card span {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* HOVER */
+.option-card:hover {
+  background: #eef3ff;
+}
+
+/* ACTIVE */
+.option-card.active {
+  background: linear-gradient(180deg, #f0f4ff, #ffffff);
+  border-color: #4f6ef7;
+}
+
+.option-card:hover .option-icon {
+  background: #EEF3FF;
+}
+
+.option-card:hover .option-icon svg path,
+.option-card:hover .option-icon svg rect,
+.option-card:hover .option-icon svg circle {
+  stroke: #5A6FF5;
+}
+
+/* === ICON BASE (ВСЕГДА ВИДНЫ) === */
+.option-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #EEF3FF, #FFFFFF);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.option-icon svg {
+  width: 30px;
+  height: 30px;
+}
+
+/* БАЗОВЫЙ ЦВЕТ ИКОНОК (НЕ ACTIVE) */
+.option-icon svg path,
+.option-icon svg rect,
+.option-icon svg circle {
+  stroke: #6B7FEF;
+  fill: #EAF0FF;
+}
+
+.option-card:hover .option-icon {
+  background: #EEF3FF;
+}
+
+.option-card:hover .option-icon svg path,
+.option-card:hover .option-icon svg rect,
+.option-card:hover .option-icon svg circle {
+  stroke: #5A6FF5;
+}
+
+/* CHECKMARK */
+.checkmark {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #4f6ef7;
+  color: #ffffff;
+  font-size: 16px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.option-card.active .checkmark {
+  display: flex;
+}
+
+/* BUTTON */
+.btn-primary {
+  padding: 18px 48px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 14px;
+  border: none;
+  color: #ffffff;
+  background: linear-gradient(180deg, #5b74f6, #4f6ef7);
+  box-shadow: 0 16px 32px rgba(79, 110, 247, 0.3);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(79, 110, 247, 0.4);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .options-grid {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+}
