@@ -38,9 +38,9 @@ smartlearn-ai/
 │   ├── package.json
 │   └── .env.example
 ├── assets/
+├── css/         
+├── js/
 ├── *.html
-├── *.css
-├── *.js
 ├── .gitignore
 └── README.md
 ```
